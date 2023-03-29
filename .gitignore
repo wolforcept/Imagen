@@ -1,1 +1,6 @@
-old versions
+node_modules
+dist/
+*.log
+.vscode
+deploy/
+tests/
