@@ -85,7 +85,7 @@ export class Renderer {
 
     private async inRender(script: string, paramlist: ParamList, lineIndex: number) {
 
-        const { width, height, varNames, name } = paramlist
+        const { width, height, vars, name } = paramlist
         const values: string[] = paramlist.lines[lineIndex].values
         const baseDir = this.baseDir
         const images = new Map<string, Bitmap>()
@@ -232,9 +232,9 @@ export class Renderer {
         // RENDER
 
         const varsObj: any = {}
-        for (let i = 0; i < varNames.length; i++) {
-            const varr = varNames[i];
-            varsObj[varr] = values[i] ?? ''
+        for (let i = 0; i < vars.length; i++) {
+            const varName = vars[i].name;
+            varsObj[varName] = values[i] ?? ''
         }
 
         const render = eval(`(async () => {

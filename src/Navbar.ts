@@ -12,9 +12,9 @@ export class Navbar extends BoxV {
     constructor(private main: Main, setPage: (page: Page) => void) {
         super()
         this.setFixedWidth(100)
+        this.margin(10)
 
         this.paramlistsWrapperWidget = new BoxV();
-        this.paramlistsWrapperWidget.margins(0, 0, 0, 0)
 
         this.addLeftButton("Script", () => setPage(main.scriptPage))
         this.addLeftButton("Inputs", () => setPage(main.inputsPage))

@@ -15,7 +15,7 @@ export class ScriptPage extends Page {
 
         this.add(new Title("Script"))
 
-        const buttonsPanel = new BoxH().noMargins();
+        const buttonsPanel = new BoxH();
 
         const saveButton = new Button("Save", () => this.saveScript(), 'Ctrl+S');
         buttonsPanel.add(saveButton)

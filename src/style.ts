@@ -10,6 +10,12 @@ function css(template: TemplateStringsArray): string {
 }
 
 export const style: string = css`
+
+    #wrapper {
+        background-color:none;
+        border: none;
+    }
+
     #main {
         background-color: colorDark;
         border: none;

@@ -42,14 +42,12 @@ export class Main extends BoxH {
         this.paramlistsPages = new Map<string, ParamlistPage>()
 
         this.content = new BoxV();
-        this.content.setMinimumWidth(500)
-        this.content.setMinimumHeight(500)
         this.currentPage = this.scriptPage
         this.content.add(this.scriptPage)
 
         this.add(this.navbar);
         this.add(this.content);
-        this.setObjectName('main')
+        this.class('main')
 
         // this.showMaximized();
     }
