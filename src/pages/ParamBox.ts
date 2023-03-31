@@ -40,7 +40,6 @@ export class ParamBox extends Grid {
             }, 1);
         }).w(28).h(28), 0, maxY + 1, maxX, 1)
 
-
         this.add(new Button('🔍', () => {
             this.main.renderer.render(this.saveObj, lineIndex)
         }).w(28).h(28), 1, maxY + 1, maxX, 1)
