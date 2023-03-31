@@ -3,6 +3,7 @@ import { Button } from "./components/Button";
 import { Page } from "./components/Page";
 import { Main } from "./Main";
 import { ParamlistPage } from "./pages/ParamlistPage";
+import { ParamlistSettingsPage } from "./pages/ParamlistSettingsPage";
 
 export class Navbar extends BoxV {
 
@@ -46,7 +47,11 @@ export class Navbar extends BoxV {
     }
 
     openParamlist(paramlistName: string) {
-        this.main.setPage(new ParamlistPage(this.main, paramlistName))
+        const currParamlistPage = (this.main.currentPage as ParamlistPage)
+        if (currParamlistPage && currParamlistPage.paramlistName === paramlistName && !currParamlistPage.isSettings)
+            this.main.setPage(new ParamlistSettingsPage(this.main, paramlistName))
+        else
+            this.main.setPage(new ParamlistPage(this.main, paramlistName))
     }
 
 }

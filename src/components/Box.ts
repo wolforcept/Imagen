@@ -80,9 +80,13 @@ export class Box extends QWidget {
     //     return this
     // }
 
-    // margins(t: number, r: number, b: number, l: number) {
-    //     this.innerLayout.setContentsMargins(t, r, b, l)
-    // }
+    margins(v: number) {
+        this.marginsAll(v, v, v, v)
+    }
+
+    marginsAll(t: number, r: number, b: number, l: number) {
+        this.inner.setContentsMargins(t, r, b, l)
+    }
 
     addSpacing(value?: number) {
         if (value)
