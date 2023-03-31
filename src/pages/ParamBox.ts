@@ -22,7 +22,8 @@ export class ParamBox extends Grid {
                 new Label(v.name),
                 new TextField(t => {
                     saveObj.lines[lineIndex].values[valueIndex] = t
-                }),
+                    this.save()
+                }, saveObj.lines[lineIndex].values[valueIndex]),
             ])
             this.add(box, v.x, v.y, v.w, v.h)
             i++;
@@ -32,17 +33,22 @@ export class ParamBox extends Grid {
                 maxY = v.y
         })
 
-        this.add(new Button('❌', () => {
-            this.saveObj.lines.splice(lineIndex, 1)
-            this.save()
-            setTimeout(() => {
-                this.delete()
-            }, 1);
-        }).w(28).h(28), 0, maxY + 1, maxX, 1)
+        const buttonsLine = new BoxH([
+            new Button('❌', () => {
+                this.saveObj.lines.splice(lineIndex, 1)
+                this.save()
+                setTimeout(() => {
+                    this.delete()
+                }, 1);
+            }).w(28).h(28),
 
-        this.add(new Button('🔍', () => {
-            this.main.renderer.render(this.saveObj, lineIndex)
-        }).w(28).h(28), 1, maxY + 1, maxX, 1)
+            new Button('🔍', () => {
+                this.main.renderer.render(this.saveObj, lineIndex)
+            }).w(28).h(28),
+        ])
+        buttonsLine.addSpacing()
+        this.add(buttonsLine, 0, maxY + 1, maxX, 1)
+
 
         // const line = this.saveObj.lines[lineIndex];
         //     const lineBox = new BoxH()

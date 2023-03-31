@@ -54,8 +54,8 @@ drawText(font, 40, 60, ('' + color).toUpperCase())`
             newName = 'new paramlist ' + i++
 
         const paramlist = { ...defaultParamlist, name: newName }
-
-        fs.writeFileSync(`${this.baseDir}/${newName}.paramlist`, JSON.stringify(paramlist));
+        this.saveParamlist(paramlist)
+        // fs.writeFileSync(`${this.baseDir}/${newName}.paramlist`, JSON.stringify(paramlist, null, 2));
     }
 
     openParamlist(paramlistName: string): ParamList {
@@ -64,7 +64,7 @@ drawText(font, 40, 60, ('' + color).toUpperCase())`
     }
 
     saveParamlist(paramlist: ParamList) {
-        const paramlistString = JSON.stringify(paramlist)
+        const paramlistString = JSON.stringify(paramlist, null, 2)
         fs.writeFileSync(`${this.baseDir}/${paramlist.name}.paramlist`, paramlistString)
     }
 

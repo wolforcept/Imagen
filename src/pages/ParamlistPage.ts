@@ -23,24 +23,6 @@ export class ParamlistPage extends Page {
 
         this.add(new Title("Parameter List: " + paramlistName))
 
-        // this.add(new BoxH([
-        //     new Label('Width'),
-        //     new TextField((t) => {
-        //         this.saveObj.width = Number.parseInt(t)
-        //         this.save()
-        //     }, '' + this.saveObj.width),
-        //     new Label('Height'),
-        //     new TextField((t) => {
-        //         this.saveObj.height = Number.parseInt(t)
-        //         this.save()
-        //     }, '' + this.saveObj.height),
-        // ]).h(40))
-
-        // this.add(1)
-
-        // this.varsList = new BoxH().h(40);
-        // this.add(this.varsList)
-
         this.listOfLines = new BoxV();
         this.add(new ScrollArea(this.listOfLines))
 
@@ -54,7 +36,6 @@ export class ParamlistPage extends Page {
     onOpen(): void {
         this.saveObj = this.main.data.openParamlist(this.paramlistName)
         this.refreshParamsList();
-        // this.refreshVarsList();
     }
 
     addLine() {
@@ -63,58 +44,14 @@ export class ParamlistPage extends Page {
         })
     }
 
-    // addVar() {
-
-    //     const names = this.saveObj.vars.map(x => x.name);
-    //     let newName = 'var1'
-    //     let i = 2
-    //     while (names.find(x => x === newName))
-    //         newName = 'var' + i++
-
-    //     this.saveObj.vars.push({ name: newName, x: 0, y: 0 })
-    //     this.refreshVarsList();
-    //     this.save()
-    // }
-
     save() {
         this.main.data.saveParamlist(this.saveObj)
     }
 
-    // refreshVarsList() {
-
-    //     this.varsList.resetLayout()
-
-    //     this.varsList.add(new Button('+', () => {
-    //         this.addVar()
-    //         this.refreshParamsList()
-    //         this.save()
-    //     }).w(28).h(28))
-
-    //     for (let i = 0; i < this.saveObj.vars.length; i++) {
-    //         const varIndex = i;
-    //         const varName = this.saveObj.vars[varIndex].name;
-    //         this.varsList.add(new TextField(newVarName => {
-    //             this.saveObj.vars[varIndex].name = newVarName;
-    //             this.refreshParamsList()
-    //             this.save()
-    //         }, varName))
-    //     };
-
-    //     this.varsList.add(new Button('+', () => {
-    //         this.addVar()
-    //         this.refreshParamsList()
-    //         this.save()
-    //     }).w(28).h(28))
-
-    //     // this.varsList.addSpacing()
-    // }
-
     refreshParamsList() {
-
         this.listOfLines.resetLayout()
 
         for (let lineIndex = 0; lineIndex < this.saveObj.lines.length; lineIndex++) {
-
             const paramBox = new ParamBox(this.main, this.saveObj, lineIndex);
             this.listOfLines.add(paramBox)
         }

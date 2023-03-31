@@ -21,11 +21,13 @@ export interface ParamList {
 
 export const defaultParamlist: ParamList = {
     name: 'new paramlist',
-    lines: [],
+    lines: [
+        { values: ['i am var 1', 'i am var 2', 'i am var 3'] }
+    ],
     vars: [
         { x: 0, y: 0, w: 1, h: 1, name: 'var1' },
         { x: 1, y: 0, w: 1, h: 1, name: 'var2' },
-        { x: 0, y: 1, w: 1, h: 2, name: 'var3' },
+        { x: 0, y: 1, w: 2, h: 1, name: 'var3' },
     ],
     width: 100,
     height: 100,
