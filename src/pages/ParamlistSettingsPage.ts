@@ -8,10 +8,11 @@ import { Title } from "../components/Title";
 import { ParamList } from "../data/ParamList";
 import { Main } from "../Main";
 import { ParamBox } from "./ParamBox";
+import { VarBox } from "./VarBox";
 
-export class ParamlistPage extends Page {
+export class ParamlistSettingsPage extends Page {
 
-    isSettings = false
+    isSettings = true
     listOfLines: BoxV
     // varsList: BoxH
     saveObj: ParamList
@@ -21,60 +22,49 @@ export class ParamlistPage extends Page {
 
         this.saveObj = this.main.data.openParamlist(this.paramlistName)
 
-        this.add(new Title("Parameter List: " + paramlistName))
+        this.add(new Title("Parameter Settings: " + paramlistName))
 
-        // this.add(new BoxH([
-        //     new Label('Width'),
-        //     new TextField((t) => {
-        //         this.saveObj.width = Number.parseInt(t)
-        //         this.save()
-        //     }, '' + this.saveObj.width),
-        //     new Label('Height'),
-        //     new TextField((t) => {
-        //         this.saveObj.height = Number.parseInt(t)
-        //         this.save()
-        //     }, '' + this.saveObj.height),
-        // ]).h(40))
-
-        // this.add(1)
-
-        // this.varsList = new BoxH().h(40);
-        // this.add(this.varsList)
+        this.add(new BoxH([
+            new Label('Width'),
+            new TextField((t) => {
+                this.saveObj.width = Number.parseInt(t)
+                this.save()
+            }, '' + this.saveObj.width),
+            new Label('Height'),
+            new TextField((t) => {
+                this.saveObj.height = Number.parseInt(t)
+                this.save()
+            }, '' + this.saveObj.height),
+        ]).h(40))
 
         this.listOfLines = new BoxV();
         this.add(new ScrollArea(this.listOfLines))
 
         this.add(new Button('+', () => {
-            this.addLine()
-            this.refreshParamsList()
+            this.addVar()
+            this.refreshVarsList()
             this.save()
         }))
     }
 
     onOpen(): void {
         this.saveObj = this.main.data.openParamlist(this.paramlistName)
-        this.refreshParamsList();
+        this.refreshVarsList();
         // this.refreshVarsList();
     }
 
-    addLine() {
-        this.saveObj.lines.push({
-            values: this.saveObj.vars.map(x => x.name)
-        })
+    addVar() {
+
+        const names = this.saveObj.vars.map(x => x.name);
+        let newName = 'var1'
+        let i = 2
+        while (names.find(x => x === newName))
+            newName = 'var' + i++
+
+        this.saveObj.vars.push({ name: newName, x: 0, y: 0, w: 1, h: 1 })
+        this.refreshVarsList();
+        this.save()
     }
-
-    // addVar() {
-
-    //     const names = this.saveObj.vars.map(x => x.name);
-    //     let newName = 'var1'
-    //     let i = 2
-    //     while (names.find(x => x === newName))
-    //         newName = 'var' + i++
-
-    //     this.saveObj.vars.push({ name: newName, x: 0, y: 0 })
-    //     this.refreshVarsList();
-    //     this.save()
-    // }
 
     save() {
         this.main.data.saveParamlist(this.saveObj)
@@ -109,16 +99,14 @@ export class ParamlistPage extends Page {
     //     // this.varsList.addSpacing()
     // }
 
-    refreshParamsList() {
+    refreshVarsList() {
 
         this.listOfLines.resetLayout()
 
-        for (let lineIndex = 0; lineIndex < this.saveObj.lines.length; lineIndex++) {
-
-            const paramBox = new ParamBox(this.main, this.saveObj, lineIndex);
-            this.listOfLines.add(paramBox)
+        for (let varIndex = 0; varIndex < this.saveObj.vars.length; varIndex++) {
+            const varBox = new VarBox(this.main, this.saveObj, varIndex);
+            this.listOfLines.add(varBox)
         }
-
         this.listOfLines.addSpacing()
     }
 

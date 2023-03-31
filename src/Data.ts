@@ -63,9 +63,9 @@ drawText(font, 40, 60, ('' + color).toUpperCase())`
         return JSON.parse(data) as ParamList
     }
 
-    saveParamlist(paramlistName: string, paramlist: ParamList) {
+    saveParamlist(paramlist: ParamList) {
         const paramlistString = JSON.stringify(paramlist)
-        fs.writeFileSync(`${this.baseDir}/${paramlistName}.paramlist`, paramlistString)
+        fs.writeFileSync(`${this.baseDir}/${paramlist.name}.paramlist`, paramlistString)
     }
 
     // 

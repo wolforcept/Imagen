@@ -18,12 +18,16 @@ export abstract class Grid extends QWidget {
         this.innerLayout = layout
     }
 
-    add(child: QWidget, row: number, col: number, rowspan?: number, colspan?: number) {
-        this.innerLayout.addWidget(child, row, col, rowspan, colspan)
+    add(child: QWidget, x: number, y: number, w?: number, h?: number) {
+        this.innerLayout.addWidget(child, y, x, h, w)
     }
 
     class(objectName: string) {
         this.inner.setObjectName(objectName)
+    }
+
+    margins(v: number) {
+        this.inner.setContentsMargins(v, v, v, v)
     }
 
     resetLayout(): { box: QWidget, layout: QGridLayout } {
