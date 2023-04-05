@@ -92,10 +92,10 @@ export class Renderer {
         const { width, height, vars, name } = paramlist
         const values_3984670: string[] = paramlist.lines[lineIndex].values
         const baseDir = this.baseDir
-        const images_293865 = new Map<string, Image>()
-        // const images_293865 = new Map<string, Bitmap>()
-        const canvas = createCanvas(width, height)
-        // const canvas = PImage.make(width, height, undefined)
+        // const images_293865 = new Map<string, Image>()
+        const images_293865 = new Map<string, Bitmap>()
+        // const canvas = createCanvas(width, height)
+        const canvas = PImage.make(width, height, undefined)
         const ctx = canvas.getContext('2d');
 
         //
@@ -120,12 +120,12 @@ export class Renderer {
             const img = path.endsWith('.png')
                 ? await PImage.decodePNGFromStream(stream)
                 : await PImage.decodeJPEGFromStream(stream)
-            images.set(path, img)
+            images_293865.set(path, img)
             return path
         }
 
         function drawImage(path: string, x: number, y: number, w?: number, h?: number) {
-            const img = images.get(path)
+            const img = images_293865.get(path)
             if (img)
                 ctx.drawImage(img,
                     0, 0, img.width, img.height,
@@ -269,7 +269,7 @@ export class Renderer {
             if (!this.imageWindows[lineIndex])
                 this.imageWindows[lineIndex] = new ImageWindow(paramlist, lineIndex)
             this.imageWindows[lineIndex].showImage(imgDir)
-        }).catch((e) => {
+        }).catch((e: any) => {
             console.log(e)
             console.log("there was an error writing");
         });

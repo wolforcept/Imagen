@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@nodegui/nodegui": "^0.57.1",
+    "csv": "^6.2.8",
     "node-localstorage": "^2.2.1",
     "pureimage": "^0.3.17"
   },
