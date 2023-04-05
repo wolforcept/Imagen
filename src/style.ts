@@ -1,5 +1,11 @@
 
-const colors: { [key: string]: string } = { colorDark: '#112233', colorMedium: '#223344', colorLight: '#334455', colorTransparent: '#00000000' }
+const colors: { [key: string]: string } = {
+    colorDark: '#112233',
+    colorMedium: '#223344',
+    colorLight: '#334455',
+    colorTransparent: '#00000000',
+    colorSelected: '#667788',
+}
 function css(template: TemplateStringsArray): string {
 
     let str = template.raw.join('')
@@ -34,6 +40,15 @@ export const style: string = css`
     #button {
         color: #AABBCC;
         background-color: colorLight;
+    }
+
+    #dropdown {
+        color: #AABBCC;
+        background-color: colorLight;
+    }
+
+    #button-active {
+        background-color: colorSelected;
     }
 
     #textbox {

@@ -1,3 +1,4 @@
+import { AcceptMode, FileMode, QFileDialog } from "@nodegui/nodegui";
 import { BoxH, BoxV } from "../components/Box";
 import { Button } from "../components/Button";
 import { Label } from "../components/Label";
@@ -40,17 +41,39 @@ export class ParamlistSettingsPage extends Page {
         this.listOfLines = new BoxV();
         this.add(new ScrollArea(this.listOfLines))
 
-        this.add(new Button('+', () => {
-            this.addVar()
-            this.refreshVarsList()
-            this.save()
-        }))
+        const buttonsBox = new BoxH([
+            new Button('+', () => {
+                this.addVar()
+                this.refreshVarsList()
+                this.save()
+            }),
+            new Button('Import', () => {
+                this.tryImportCsv()
+                this.refreshVarsList()
+                this.save()
+            }),
+        ])
+
+        this.add(buttonsBox)
     }
 
     onOpen(): void {
         this.saveObj = this.main.data.openParamlist(this.paramlistName)
         this.refreshVarsList();
         // this.refreshVarsList();
+    }
+
+    tryImportCsv() {
+        const fileDialog = new QFileDialog();
+        fileDialog.setFileMode(FileMode.ExistingFile);
+        fileDialog.setAcceptMode(AcceptMode.AcceptOpen);
+        fileDialog.setNameFilter('*.csv')
+        fileDialog.exec();
+        const selectedFiles = fileDialog.selectedFiles();
+        if (selectedFiles?.length > 0) {
+            const filePath = selectedFiles[0];
+            this.main.data.importCsvIntoParamlist(filePath, this.saveObj)
+        }
     }
 
     addVar() {

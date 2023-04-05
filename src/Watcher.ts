@@ -6,6 +6,7 @@ interface WatcherCallbacks {
     onScriptChanged: () => void,
     onParamlistsChanged: () => void,
     onInputsChanged: () => void
+    onOutputsChanged: () => void
 }
 
 const verbose = false
@@ -25,6 +26,8 @@ export class Watcher {
                 callbacks.onParamlistsChanged()
             if (filename.startsWith('inputs'))
                 callbacks.onInputsChanged()
+            if (filename.startsWith('outputs'))
+                callbacks.onOutputsChanged()
             if (verbose) {
                 console.log("The file ", filename, " was modified!");
                 console.log("It was a ", eventType, " event type.");

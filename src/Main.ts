@@ -4,7 +4,7 @@ import { Page } from './components/Page';
 import { Data } from './Data';
 import { Local } from './Local';
 import { Navbar } from './Navbar';
-import { InputsPage } from './pages/InputsPage';
+import { FilesListPage } from './pages/InputsPage';
 import { ParamlistPage } from './pages/ParamlistPage';
 import { ScriptPage } from './pages/ScriptPage';
 import { Renderer } from './Renderer';
@@ -20,7 +20,8 @@ export class Main extends BoxH {
     content: BoxV
     currentPage: Page
 
-    inputsPage: InputsPage
+    inputsPage: FilesListPage
+    outputsPage: FilesListPage
     scriptPage: ScriptPage
     paramlistsPages: Map<string, ParamlistPage>
 
@@ -30,7 +31,8 @@ export class Main extends BoxH {
         this.renderer = new Renderer(this, baseDir)
         this.watcher = new Watcher(baseDir,
             {
-                onInputsChanged: () => console.log('inputs changed'),
+                onInputsChanged: () => this.inputsPage.refreshGrid(),
+                onOutputsChanged: () => this.outputsPage.refreshGrid(),
                 onParamlistsChanged: () => this.navbar.refreshParamlistsWidgets(),
                 onScriptChanged: () => { this.scriptPage.updateScript(); this.renderer.renderLast() }
             }
@@ -38,7 +40,8 @@ export class Main extends BoxH {
 
         this.navbar = new Navbar(this, (page) => this.setPage(page));
         this.scriptPage = new ScriptPage(this);
-        this.inputsPage = new InputsPage(this);
+        this.inputsPage = new FilesListPage(this, this.data.inputFilesLocation(),()=>this.data.getAllInputPaths());
+        this.outputsPage = new FilesListPage(this, this.data.outputFilesLocation(),()=>this.data.getAllOutputPaths());
         this.paramlistsPages = new Map<string, ParamlistPage>()
 
         this.content = new BoxV();
@@ -64,7 +67,6 @@ export class Main extends BoxH {
         this.watcher.stop()
         Local.clearCurrentProjectLocation();
         INDEX.init()
-        // (global as any).win = new OpenProjectWindow();
     }
 
 }

@@ -22,6 +22,7 @@ export class OpenProjectWindow extends QMainWindow {
         this.setCentralWidget(this.contentWidget);
         this.setWindowTitle("Imagen: Programmable Image Generator");
         this.setStyleSheet(style);
+        this.resize(600, 600)
         this.show();
     }
 

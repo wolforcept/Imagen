@@ -1,6 +1,6 @@
 import { AlignmentFlag, Direction, QBoxLayout, QGridLayout, QLayout, QObject, QWidget } from "@nodegui/nodegui";
 
-export abstract class Grid extends QWidget {
+export class Grid extends QWidget {
 
     private thisLayout: QBoxLayout
     private inner: QWidget

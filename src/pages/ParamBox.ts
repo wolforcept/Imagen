@@ -1,3 +1,4 @@
+import { WidgetEventTypes } from "@nodegui/nodegui";
 import { BoxH } from "../components/Box";
 import { Button } from "../components/Button";
 import { Grid } from "../components/Grid";
@@ -18,13 +19,12 @@ export class ParamBox extends Grid {
         let maxY = 0;
         saveObj.vars.forEach(v => {
             const valueIndex = i;
-            const box = new BoxH([
-                new Label(v.name),
-                new TextField(t => {
-                    saveObj.lines[lineIndex].values[valueIndex] = t
-                    this.save()
-                }, saveObj.lines[lineIndex].values[valueIndex]),
-            ])
+            const textfield = new TextField(t => {
+                saveObj.lines[lineIndex].values[valueIndex] = t
+                this.save()
+            }, saveObj.lines[lineIndex].values[valueIndex])
+            textfield.addEventListener(WidgetEventTypes.FocusIn, () => { textfield.selectAll() })
+            const box = new BoxH([new Label(v.name).wMin(60), textfield])
             this.add(box, v.x, v.y, v.w, v.h)
             i++;
             if (v.x > maxX)

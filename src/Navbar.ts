@@ -1,5 +1,5 @@
 import { BoxV } from "./components/Box";
-import { Button } from "./components/Button";
+import { Button, ButtonH } from "./components/Button";
 import { Page } from "./components/Page";
 import { Main } from "./Main";
 import { ParamlistPage } from "./pages/ParamlistPage";
@@ -17,19 +17,19 @@ export class Navbar extends BoxV {
 
         this.paramlistsWrapperWidget = new BoxV();
 
-        this.addLeftButton("Script", () => setPage(main.scriptPage))
-        this.addLeftButton("Inputs", () => setPage(main.inputsPage))
+        const scriptButton = new ButtonH("Script", () => setPage(main.scriptPage))
+        this.add(scriptButton)
+        this.add(new ButtonH("Inputs", () => setPage(main.inputsPage)))
+        this.add(new ButtonH("Outputs", () => setPage(main.outputsPage)))
         this.addSpacing(20)
         this.add(this.paramlistsWrapperWidget)
-        this.addLeftButton("+", () => main.data.createParamlist())
+        this.add(new Button("+", () => main.data.createParamlist()))
         this.addSpacing();
-        this.addLeftButton("Close", () => main.closeProject())
+        this.add(new Button("explore", () => main.data.openFolder()))
+        this.add(new Button("close", () => main.closeProject()))
 
+        scriptButton.highlight()
         this.refreshParamlistsWidgets()
-    }
-
-    addLeftButton(text: string, onClick: () => void) {
-        this.add(new Button(text, onClick))
     }
 
     refreshParamlistsWidgets() {
@@ -40,7 +40,7 @@ export class Navbar extends BoxV {
         const paramlistsNames = this.main.data.getParamlists()
         for (let i = 0; i < paramlistsNames.length; i++) {
             const name = paramlistsNames[i].substring(0, paramlistsNames[i].length - 10)
-            const b = new Button(name, () => this.openParamlist(name));
+            const b = new ButtonH(name, () => this.openParamlist(name));
             this.paramlistsWrapperWidget.add(b)
             this.paramlistsButtons.push(b)
         }

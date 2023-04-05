@@ -7,4 +7,9 @@ export class Label extends QLabel {
         this.setText(text)
         this.setObjectName('label')
     }
+
+    wMin(v: number): Label {
+        this.setMinimumWidth(v)
+        return this
+    }
 }

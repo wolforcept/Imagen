@@ -1,7 +1,10 @@
 // import chokidar from 'chokidar';
 
 import fs, { readdirSync } from 'fs'
-import { defaultParamlist, ParamList } from './data/ParamList';
+import { defaultParamlist, ParamLine, ParamList, ParamVar } from './data/ParamList';
+import csv from 'csv'
+import { parse } from 'csv-parse/sync';
+
 
 const verbose = false;
 
@@ -63,19 +66,38 @@ drawText(font, 40, 60, ('' + color).toUpperCase())`
         return JSON.parse(data) as ParamList
     }
 
+    async importCsvIntoParamlist(paramlistPath: string, paramlist: ParamList) {
+
+        // const paramlistPath = "C:/Users/Miguel/Pictures/Imagen/lolgame/cards.paramlist.csv";
+        const data = fs.readFileSync(paramlistPath, 'utf8');
+        const parsedData: string[][] = parse(data, {
+            delimiter: ';',
+            escape: false,
+            quote: null,
+            relaxQuotes: true,
+        })
+        paramlist.lines = parsedData.map(line => ({ values: line } as ParamLine))
+        this.saveParamlist(paramlist)
+    }
+
     saveParamlist(paramlist: ParamList) {
         const paramlistString = JSON.stringify(paramlist, null, 2)
         fs.writeFileSync(`${this.baseDir}/${paramlist.name}.paramlist`, paramlistString)
     }
 
-    // 
-    // INPUTS
+    //
 
     getAllInputPaths() {
-        return fs.readdirSync(this.inputFilesLocation()).filter(x => x.endsWith('.paramlist'))
+        return fs.readdirSync(this.inputFilesLocation())
     }
 
-    //
+    getAllOutputPaths() {
+        return fs.readdirSync(this.outputFilesLocation())
+    }
+
+    openFolder(): void {
+        require('child_process').exec(`start "" "${this.baseDir}"`);
+    }
 
     scriptFileLocation() {
         return `${this.baseDir}/script.js`
@@ -83,5 +105,9 @@ drawText(font, 40, 60, ('' + color).toUpperCase())`
 
     inputFilesLocation() {
         return `${this.baseDir}/inputs`
+    }
+
+    outputFilesLocation() {
+        return `${this.baseDir}/outputs`
     }
 }

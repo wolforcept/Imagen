@@ -1,15 +1,16 @@
 import { AlignmentFlag, Direction, QBoxLayout, QGroupBox, QLayout, QObject, QWidget } from "@nodegui/nodegui";
+import { Widget } from "./Widget";
 
 export class Box extends QWidget {
 
     private thisLayout: QBoxLayout
     private inner: QGroupBox
     private innerLayout: QBoxLayout
-    // private _children: QWidget[]
+    private _children: QWidget[]
 
     constructor(private direction: Direction, children?: QWidget[]) {
         super()
-        // this._children = []
+        this._children = []
         this.thisLayout = new QBoxLayout(Direction.TopToBottom)
         this.setLayout(this.thisLayout)
         super.setObjectName('wrapper')
@@ -39,8 +40,12 @@ export class Box extends QWidget {
         //     this._layout.addStretch()
         // } else {
         this.innerLayout.addWidget(child)
-        // this._children.push(child)
+        this._children.push(child)
         // }
+    }
+
+    getChildren(): QWidget[] {
+        return this._children.filter(x => x && x.native)
     }
 
     class(objectName: string) {
@@ -88,11 +93,12 @@ export class Box extends QWidget {
         this.inner.setContentsMargins(t, r, b, l)
     }
 
-    addSpacing(value?: number) {
+    addSpacing(value?: number): Box {
         if (value)
             this.innerLayout.addSpacing(value);
         else
             this.innerLayout.addStretch(999999);
+        return this;
     }
 
     w(w: number): Box {

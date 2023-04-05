@@ -12,6 +12,8 @@ class ImageWindow extends QMainWindow {
 
     label: QLabel
     prevPos: { x: number, y: number } | undefined
+    removed = false
+    firstTime = true
 
     constructor(public paramlist: ParamList, public lineIndex: number) {
         super()
@@ -35,6 +37,7 @@ class ImageWindow extends QMainWindow {
         scrollarea.addEventListener(WidgetEventTypes.MouseButtonRelease, () => {
             this.prevPos = undefined
         });
+        this.addEventListener(WidgetEventTypes.Close, () => this.removed = true)
 
         this.setCentralWidget(scrollarea);
         this.setStyleSheet(`QScrollBar { width: 0px; height: 0px; }`)
@@ -45,12 +48,14 @@ class ImageWindow extends QMainWindow {
         const image = new QPixmap();
         image.load(path);
         this.label.setPixmap(image);
-        this.resize(
-            Math.min(1000, image.width()),
-            Math.min(1000, image.height())
-        )
+        if (this.firstTime)
+            this.resize(
+                Math.min(1000, image.width()),
+                Math.min(1000, image.height())
+            )
         this.setWindowTitle(this.paramlist.lines[this.lineIndex].values.join(' '));
         this.show()
+        this.firstTime = false
         // QApplication.instance().
         // this.focusWidget()
         // this.setFocus(FocusReason.PopupFocusReason)
@@ -68,10 +73,9 @@ export class Renderer {
 
     async renderLast() {
         this.imageWindows.forEach(win => {
-            if (win && win.isVisible())
-                this.render(win.paramlist, win.lineIndex)
+            if (!win || win.removed || !win.isVisible()) return
+            this.render(this.main.data.openParamlist(win.paramlist.name), win.lineIndex)
         });
-        // if (!this.lastRendered) return
     }
 
     async render(paramlist: ParamList, lineIndex: number) {
@@ -86,10 +90,12 @@ export class Renderer {
     private async inRender(script: string, paramlist: ParamList, lineIndex: number) {
 
         const { width, height, vars, name } = paramlist
-        const values: string[] = paramlist.lines[lineIndex].values
+        const values_3984670: string[] = paramlist.lines[lineIndex].values
         const baseDir = this.baseDir
-        const images = new Map<string, Bitmap>()
-        const canvas = PImage.make(width, height, undefined)
+        const images_293865 = new Map<string, Image>()
+        // const images_293865 = new Map<string, Bitmap>()
+        const canvas = createCanvas(width, height)
+        // const canvas = PImage.make(width, height, undefined)
         const ctx = canvas.getContext('2d');
 
         //
@@ -171,11 +177,12 @@ export class Renderer {
             ctx.font = `${maybeSize}pt ${maybeFont}`;
             ctx.fillStyle = options?.color ?? currentFontColor;
 
-            function _drawText(_x: number, _y: number, _text: string) {
+            function _drawText(_x: number, _y: number, _text: string): number {
                 if (options?.outline)
                     ctx.strokeText(_text, _x, _y)
                 else
                     ctx.fillText(_text, _x, _y);
+                return 1;
             }
 
             if (!options?.width) {
@@ -183,8 +190,8 @@ export class Renderer {
                 return;
             }
 
-            const sentenceWidth = options.width
-            const sentenceHeight = options.height ?? maybeSize * 1.2
+            const sentenceWidth = options?.width ?? Infinity
+            const sentenceHeight = options?.height ?? maybeSize * 1.2
             const words = text.split(/(\s+)/);
             let dy = 0;
             let sentence = ''
@@ -219,7 +226,11 @@ export class Renderer {
                     sentence = word
                 }
             })
+
             _drawText(x, y + dy, sentence)
+            dy += sentenceHeight
+
+            return dy;
         }
 
         function textWidth(text: string): number {
@@ -234,13 +245,18 @@ export class Renderer {
         const varsObj: any = {}
         for (let i = 0; i < vars.length; i++) {
             const varName = vars[i].name;
-            varsObj[varName] = values[i] ?? ''
+            varsObj[varName] = values_3984670[i] ?? ''
         }
 
-        const render = eval(`(async () => {
-            ${script}
-        })`)
+        // try {
+        const render = eval(`(async () => { try { console.log('Rendering...'); \n ${script} \n } catch(e) { console.log(e) } })`)
+        console.log('Scripting...')
+        // console.log('Rendering...')
         await render()
+        // console.log('Render finished!')
+        // } catch (e) {
+        // console.log(e)
+        // }
 
         if (!fs.existsSync(`${baseDir}/outputs/`))
             fs.mkdirSync(`${baseDir}/outputs/`)
