@@ -42,3 +42,14 @@ export class OpenProjectWindow extends QMainWindow {
 
 export const INDEX = new OpenProjectWindow();
 (global as any).win = INDEX
+
+const { Image } = require('canvas')
+const fs = require('fs')
+const { registerFont, createCanvas } = require('canvas')
+// registerFont('comicsans.ttf', { family: 'Comic Sans' })
+
+const canvas = createCanvas(500, 500)
+const ctx = canvas.getContext('2d')
+
+ctx.font = '12px "Comic Sans"'
+ctx.fillText('Everyone hates this font :(', 250, 10)

@@ -1,12 +1,9 @@
 import { FocusReason, NativeElement, QApplication, QLabel, QMainWindow, QMouseEvent, QPixmap, QScrollArea, QSize, QWindow, WidgetEventTypes } from "@nodegui/nodegui";
 import * as fs from 'fs';
-import * as PImage from "pureimage";
-import { Bitmap } from "pureimage/types/bitmap";
-import { Context, TextAlign, TextBaseline } from "pureimage/types/context";
-import { FontRecord } from "pureimage/types/text";
 import { ScrollArea } from "./components/ScrollArea";
 import { ParamList } from './data/ParamList';
 import { Main } from "./Main";
+import { createCanvas, loadImage as _loadImage, Image } from 'canvas'
 
 class ImageWindow extends QMainWindow {
 
@@ -72,6 +69,19 @@ export class Renderer {
     constructor(private main: Main, private baseDir: string) { }
 
     async renderLast() {
+
+        // const closedIndices: number[] = []
+
+        // for (let i = 0; i < this.imageWindows.length; i++) {
+        //     const win = this.imageWindows[i]
+        //     if (!win || win.removed || !win.isVisible())
+        //         closedIndices.push(i)
+        // };
+
+        // closedIndices.forEach(i => {
+        //     this.imageWindows.splice(i, 1)
+        // })
+
         this.imageWindows.forEach(win => {
             if (!win || win.removed || !win.isVisible()) return
             this.render(this.main.data.openParamlist(win.paramlist.name), win.lineIndex)
@@ -92,10 +102,10 @@ export class Renderer {
         const { width, height, vars, name } = paramlist
         const values_3984670: string[] = paramlist.lines[lineIndex].values
         const baseDir = this.baseDir
-        // const images_293865 = new Map<string, Image>()
-        const images_293865 = new Map<string, Bitmap>()
-        // const canvas = createCanvas(width, height)
-        const canvas = PImage.make(width, height, undefined)
+        const images_293865 = new Map<string, Image>()
+        // const images_293865 = new Map<string, Bitmap>()
+        const canvas = createCanvas(width, height)
+        // const canvas = PImage.make(width, height, undefined)
         const ctx = canvas.getContext('2d');
 
         //
@@ -115,11 +125,36 @@ export class Renderer {
         //
         // IMAGE
 
+        // async function loadImage(path: string): Promise<string | null> {
+
+        //     try {
+
+        //         const p = new Promise<fs.ReadStream | null>(res => fs.createReadStream(`${baseDir}/inputs/${path}`)
+        //             .on('error', e => null)
+        //             .on('end', res)
+        //         )
+        //         const stream = await p;
+
+        //         if (!stream) return null
+
+        //         const img = await (path.endsWith('.png')
+        //             ? PImage.decodePNGFromStream(stream)
+        //             : PImage.decodeJPEGFromStream(stream))
+        //         images.set(path, img)
+        //         return path
+        //     } catch (e) {
+        //         console.log(e)
+        //         throw e
+        //         return null
+        //     }
+        // }
+
         async function loadImage(path: string): Promise<string> {
-            const stream = fs.createReadStream(`${baseDir}/inputs/${path}`)
-            const img = path.endsWith('.png')
-                ? await PImage.decodePNGFromStream(stream)
-                : await PImage.decodeJPEGFromStream(stream)
+            // const stream = fs.createReadStream(`${baseDir}/inputs/${path}`)
+            // const img = path.endsWith('.png')
+            //     ? await PImage.decodePNGFromStream(stream)
+            //     : await PImage.decodeJPEGFromStream(stream)
+            const img = await _loadImage(`${baseDir}/inputs/${path}`)
             images_293865.set(path, img)
             return path
         }
@@ -138,7 +173,7 @@ export class Renderer {
 
         function loadFont(path: string): string {
             const fontName = path.substring(0, path.lastIndexOf('.'));
-            PImage.registerFont(`${baseDir}/inputs/${path}`, fontName, 5, '', '').loadSync();
+            // PImage.registerFont(`${baseDir}/inputs/${path}`, fontName, 5, '', '').loadSync();
             return fontName
         }
 
@@ -158,23 +193,24 @@ export class Renderer {
 
         function drawText(text: string, x: number, y: number,
             options?: {
-                baseline?: TextBaseline,
-                align?: TextAlign,
+                // baseline?: TextBaseline,
+                // align?: TextAlign,
                 font?: string,
                 size?: number,
+                bold?: boolean,
                 color?: string,
                 outline?: boolean,
                 width?: number,
                 height?: number,
                 images?: { [key: string]: { image?: string, x?: number, y?: number, w: number, h: number } }
             }
-        ) {
+        ): number {
 
-            ctx.textBaseline = options?.baseline ?? "top";
-            ctx.textAlign = options?.align ?? "start";
+            // ctx.textBaseline = options?.baseline ?? "top";
+            // ctx.textAlign = options?.align ?? "start";
             const maybeFont = options?.font ?? currentFont;
             const maybeSize = options?.size ?? currentFontSize;
-            ctx.font = `${maybeSize}pt ${maybeFont}`;
+            ctx.font = `${options?.bold ? 'bold ' : ''}${maybeSize}pt ${maybeFont}`;
             ctx.fillStyle = options?.color ?? currentFontColor;
 
             function _drawText(_x: number, _y: number, _text: string): number {
@@ -185,10 +221,10 @@ export class Renderer {
                 return 1;
             }
 
-            if (!options?.width) {
-                _drawText(x, y, text)
-                return;
-            }
+            // if (!options?.width) {
+            //     _drawText(x, y, text)
+            //     return;
+            // }
 
             const sentenceWidth = options?.width ?? Infinity
             const sentenceHeight = options?.height ?? maybeSize * 1.2
@@ -265,14 +301,21 @@ export class Renderer {
             fs.mkdirSync(`${baseDir}/outputs/${name}/`)
 
         const imgDir = `${baseDir}/outputs/${name}/image_${lineIndex}.png`;
-        PImage.encodePNGToStream(canvas, fs.createWriteStream(imgDir)).then(() => {
-            if (!this.imageWindows[lineIndex])
-                this.imageWindows[lineIndex] = new ImageWindow(paramlist, lineIndex)
-            this.imageWindows[lineIndex].showImage(imgDir)
-        }).catch((e: any) => {
-            console.log(e)
-            console.log("there was an error writing");
-        });
+        fs.writeFileSync(imgDir, canvas.toBuffer())
+
+        // PImage.encodePNGToStream(canvas, fs.createWriteStream(imgDir)).then(() => {
+        if (!this.imageWindows[lineIndex])
+            this.imageWindows[lineIndex] = new ImageWindow(paramlist, lineIndex)
+
+        if (this.imageWindows[lineIndex].removed) {
+            this.imageWindows[lineIndex].deleteLater()
+            this.imageWindows[lineIndex] = new ImageWindow(paramlist, lineIndex)
+        }
+        this.imageWindows[lineIndex].showImage(imgDir)
+        // }).catch((e) => {
+        //     console.log(e)
+        //     console.log("there was an error writing");
+        // });
 
     }
 
