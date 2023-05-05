@@ -88,9 +88,15 @@ export class Renderer {
         const { width, height, varNames, name } = paramlist
         const values: string[] = paramlist.lines[lineIndex].values
         const baseDir = this.baseDir
+
         const images = new Map<string, Bitmap>()
         const canvas = PImage.make(width, height, undefined)
         const ctx = canvas.getContext('2d');
+
+        // const images_293865 = new Map<string, Bitmap>()
+        // const canvas = createCanvas(width, height)
+        // const canvas = PImage.make(width, height, undefined)
+        // const ctx = canvas.getContext('2d', { alpha: true });
 
         //
         // SHAPES
