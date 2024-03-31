@@ -1,0 +1,52 @@
+Joyous Earthling		---earth		---2,earth				---Gain /e.|Gain an extra /e /e if you don't|attack this turn.
+Raging Earthling		---earth		---2,earth,earth,earth	---Gain /e /e /e.
+Unyielding Earthling	---earth		---2,earth,earth,earth	---Draw three cards.|Put all the /e cards into your hand|and discard the rest.
+Orb of the Earth		---earth		---2,earth,earth,earth	---Gain /e /e /e.|If all this power is used on attack|rolls, you gain /r /r /r.
+Earthen Imprint			---earth		---2,earth				---Gain /e.|Keep this card in front of you.|Discard it only when you have|no other /e cards on a turn.
+Rejuvenation			---earth		---3,earth				---Search your discard pile for an|/e card and put it in your hand.|Afterwards, shuffle your deck.
+Fertile Lands			---earth		---3,earth,earth		---Discard any number of cards and|gain that many /e.
+Stand Firm				---earth		---3,earth,earth		---Place this card on any location|directly in front of an enemy.|If an enemy would move onto it's|location, instead discard this card.
+Portal to the Core		---earth		---4,earth				---Search your deck for an /e card and|put it in your hand.|Afterwards, shuffle your deck.
+Elder Earthling			---earth		---4,earth,earth		---Gain /e /a.|Alternatively, gain only /e and|place this on top of your deck.
+Invigorating Elixir		---earth		---5,earth,earth		---Pay /1 to gain /e.|You may perform this action|multiple times in a turn.
+Colossal Earthling		---earth		---6,earth				---Gain /e /e /e /e.
+
+Animate					---water		---1,water,water		---Gain /a /a.
+Ring of Rain			---water		---2,water				---Gain /a /a.|Alternatively, gain /a /i.
+Summon Water Wolf		---water		---2,water				---Gain /a /a.|Alternatively, gain /a /a /a, but use|it only on attack rolls.
+Depth Lurker			---water		---3,water				---Gain /a /a /a.
+Immersion				---water		---3,water				---Gain /a.|You may also discard a non /a card|to gain /a /a more.
+Fountain of Wisdom		---water		---2,water,water		---Draw 3 cards.
+Overflow				---water		---1,water,water		---Discard a non /a card from your|hand. Gain /a /a /a.
+One with the Elements	---water		---3,water				---Draw a card. If it is not a /a card,|draw another card.
+Unrestrained			---water		---2,water,water		---Gain /a and draw 2 cards.|Alternatively, draw 4 cards and|draw a wound card.
+Revoke					---water		---3,water,water		---This card must be the first card|played on your turn.|Discard all your hand and draw five|new cards. Gain /d.
+Seer Wayfarer			---water		---5,water,water		---Look at the top seven cards of your|deck. Place two of those cards in|your hand and the rest on top of|your deck.				
+Cleansing Space			---water		---2,water,water		---Trash a wound card from your hand.|Alternatively, pay /e to trash a|wound card from your discard pile.				
+
+Elemental Earth			---fire			---fire,fire			---Gain /f /f.
+Rain of Fire			---fire			---1,fire				---Gain /f /f.
+Induced Fire Whirl		---fire			---1,fire				---Gain /f.|Alternatively, gain /f for each other|/f card that you played this turn.
+Devastation				---fire			---fire,fire,fire		---Gain /f.|Also, gain an extra /f for each other|/f card that you played this turn.
+Conflagration Sacrifice	---fire			---2,fire				---Gain /f.|You may also trash a non /f card to|gain /f /f /f.
+Flame Imprint			---fire			---2,fire				---Gain /f.|Keep this card in front of you.|Discard it only when you have|no other /f cards on a turn.
+A Vision Of Flames		---fire			---2,fire,fire			---Look at the top 5 cards of your deck,|choose a /f card from them and|play it. At the end of your turn, put|it back into your deck and shuffle it.
+Avatar of the Eternal Flame	---fire		---2,fire,fire			---Gain /f for each other /f card you|play this turn.|At the end of your turn, put this|back into your deck and shuffle it.
+Inner Intensity			---fire			---3,fire				---Gain /f /f. Draw a card
+Fire Elemental			---fire			---3,fire,fire			---Gain /f /f /f.
+Raw Fire Power			---fire			---4,fire,fire,fire		---Gain /f /f /f /f.
+Magma Elemental			---fire			---7,fire,fire			---Gain /f /f /f /f.|Also, gain an extra /f for each other|/e or /f card you play this turn.
+
+Winged Symbiosis		---wind			---wind,wind			---Gain /i.|Alternatively, pay /e and|gain /i /i /i.
+Wind Imprint			---wind			---1,wind,wind			---Gain /i.|Keep this card in front of you.|Discard it only when you have|no other /i cards on a turn.
+Grace of the Skies		---wind			---1,wind,wind			---When you buy this card, place it in|your hand.|Gain /i /i.
+Wind Funnel				---wind			---2,wind,wind			---Gain /i. Also gain /i /i if|you only play wind cards this turn.
+Orb of the Sky			---wind			---2,wind,wind,wind		---Gain /i /i /i.|If all this power is used on attack|rolls, you gain /r /r /r.
+Brew of Fortune			---wind			---4,wind,wind,wind		---Pay /i to gain /r.|You may perform this action|multiple times in a turn.
+
+Avatar of the Elements	---magic		---fire,water,earth,wind	---Gain /m /m /m;
+Virtue Crystal			---magic		---2					---Gain /m /m.
+Crystalize				---magic		---5					---Take any number of cards named|"Crystal" from your hand and place|them aside. On your next turn, add|those cards to your hand.
+Polar Sword				---magic		---2,fire,water			---Gain /f /a /m. If this power is used|only on attack rolls, draw a card.
+Radiant Crystal			---magic		---4					---Gain /m /m.
+Radiant Crystal			---magic		---4					---Gain /m /m.

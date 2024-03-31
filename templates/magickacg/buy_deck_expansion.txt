@@ -1,0 +1,13 @@
+Mask of Pain			---darkness		---2,darkness			---Gain /d per each /d card played|this turn.
+Natural Rot				---darkness		---2,darkness			---Gain /d /d.|You may also pay /e|to gain /d /d more.
+Book of the Damned		---darkness		---4,darkness,darkness	---Gain /d /d /d /d.|If not all of it is used,|draw a wound card.
+
+Light of Valor			---light		---2,light				---Trash a wound card from your hand.
+Holy Tome				---light		---3,light				---Gain *l* *l*.|Alternatively, trash a wound|card from your hand.
+Gift of Justice			---light		---2,light				---Gain *l* *l* only for purchase power.|Alternatively, gain /f /f|only on attack rolls.
+
+Prismatic Crystal		---magic		---water,earth,light	---Gain /m /m.|Alternatively, you may draw a card.
+Prismatic Crystal		---magic		---water,earth,light	---Gain /m /m.|Alternatively, you may draw a card.
+Vile Crystal			---magic		---fire,wind,darkness	---Gain /m /m.|Alternatively, you may trash a card|from your hand.
+Vile Crystal			---magic		---fire,wind,darkness	---Gain /m /m.|Alternatively, you may trash a card|from your hand.
+Extinction Crystal		---magic		---3,light,darkness		---As an extra cost to buy this card,|trash a card from your hand.|Gain /m /m /m.

@@ -1,6 +1,10 @@
-node_modules
-dist/
-*.log
-.vscode
-deploy/
-tests/
+
+templates/lolgame/psd/symbols.psd
+templates/lolgame/psd/dice.psd
+templates/lolgame/psd/card template maker.psd
+templates/lolgame/psd/board.psd
+templates/lolgame/psd/art.psd
+TABLETOP SIMULATOR/MagickaCG/cards.psd
+TABLETOP SIMULATOR/MagickaCG/cards_back.psb
+*.psd
+templates/lolgame/champions/champions.png

@@ -1,0 +1,106 @@
+//l001---Art by Tohad			---Pumpkin Fields			---	---3,5,7 				--- f
+//
+//l015---Art by Laspinter		---Ruins of Kophrot			---	---4m,18 				--- Add /t /t to your influence.
+//
+//l002---Art by Tohad			---Ruins of Ebruz			---	---3,5,7 				--- Land feared by /e.
+//
+//l003---Art by Tohad			---Liars Peaks				---	---7,7,4r				---
+//
+//l004---Art by global99			---The Forgotten Gateway	---	---14g 					--- After traversing this land:|  draw a card.
+//
+//l005---Art by global99			---Gates of Omiz			---	---2,2,4m,2,2,10r			
+//	--- After traversing this land:|  draw a card.
+//
+//l006---Art by Laspinter		---Limehall Undercity		---	---4,7g 				--- 
+//
+//l007---Art by Laspinter		---Mushroom Fields			---	---3,5m 				--- 
+//
+//l008---Art by Laspinter		---Old Woods				---	---4r,4r 				--- 
+//
+//l009---Art by Laspinter		---Tenara, Road to Moen		---	---3g,7m,21 			--- 
+//
+//l010---Art by Laspinter		---Lava Pits				---	---4m,4r,4m 			--- 
+//
+//l011---Art by Laspinter		---Galeg Pass				---	---3,3,3 				
+//	--- Set aside 3 cards from your hand.|You may not use those cards.|After traversing this land, put all|those cards back into your hand.
+//
+//l012---Art by Laspinter		---Abharov Undercity		---	---3,6m,10m 			--- 
+//
+//l013---Art by Laspinter		---Cerise					---	---8r 					--- 
+//
+//l014---Art by Laspinter		---Great Sunio				---	---2m,2m,10u 			--- Land feared by /w.
+//
+//l016---Art by Laspinter		---Ebonwood Graveyard		---	---3,3m,3r 				--- Land feared by /c.
+//
+//l017---Art by Laspinter		---Elita Flying Mounds		---	---8g,4r,4r 			--- 
+
+l018---Unknown ---Portal to Bandle City				---	---4u,12g	 			---When you release this card, draw a card.
+l019---Unknown	---Bandle Shores					---	---4m,4r	 			--- 
+
+l020---Ionia	---Placidium of Navori				---	---8m,8r,10g			---Disadvantage: Noxus.
+
+l021---Demacia	---Temple of the Lightbringers		---	---7r,18m				---Disadvantage: Noxus.
+l022---Demacia	---High Silvermere					---	---4u,6u,12				---Disadvantage: Noxus.
+l024---Demacia	---Raptor Aerie						---	---6m,6m				---
+
+l023---Freljord	---Valar's Hollow					---	---4m,4r				---
+l025---Freljord	---Rygann's Reach					---	---6u,8m				--- 
+l026---Freljord	---Glaserport						---	---4m,4m,4u				--- 
+l027---Freljord	---Rakelstake						---	---4m,4g,12r			--- 
+l028---Freljord	---The Howling Abyss				---	---18g					--- 
+l029---Freljord	---Bridge of the Lost				---	---				--- 
+
+l030---Noxus	---Valoran Noxtora					--- ---1				---Disadvantage: Demacia.
+l031---Noxus	---The Immortal Bastion				--- ---1				---Disadvantage: Demacia.
+
+l032---Targon	---Rakkor City						--- ---1				---
+l033---Targon	---The Targon Path					--- ---1				---
+l034---Targon	---Solari Prayer Shrine				--- ---1				---
+l035---Targon	---The Farewell Gate				--- ---1				---
+l036---Targon	---Temple of Solistice				--- ---1				---
+l037---Targon	---Lower Targon						--- ---1				---
+l038---Targon	---Targon Base						--- ---1				---
+l039---Targon	---Upper Targon						--- ---1				---
+l040---Targon	---The Peak							--- ---1				---
+
+l041---Shurima	---Nashramae						--- ---1				---
+l042---Shurima	---Market of Illumination			--- ---1				---
+l043---Shurima	---The Sun Disc						--- ---1				---
+l044---Shurima	---The Valley of the Song			--- ---1				---
+l045---Shurima	---Marrowmark						--- ---1				---
+l046---Shurima	---Zoantha Cascade					--- ---1				---
+
+l047---Icathia	---Planes of Icathia				--- ---1				---
+l048---Unknown	---The Rune Chamber					--- ---1				---
+
+l049---Ixtal	---Ixtal Forests					--- ---1				---
+l050---Ixtal	---Ixaocan							--- ---1				---
+l051---Ixtal	---Southern Arcology				--- ---1				---
+l052---Ixtal	---Mountain Arcology				--- ---1				---
+
+l053---Shurima	---Noxus Port						--- ---1				---
+
+l054---Piltover	---Wharfside Docks					--- ---1				---
+l055---Piltover	---Piltover Sea Route				--- ---1				---
+l056---Piltover	---Piltover Workshops				--- ---1				---
+l057---Piltover	---Sidereal Avenue					--- ---1				---
+l058---Piltover	---The Ecliptic Vaults				--- ---1				---
+l059---Piltover	---The City of Progress				--- ---1				---
+
+l060---Zaun		---Crystal Houses					--- ---1				---
+l061---Zaun		---The Zaun Gray					--- ---1				---
+l062---Zaun		---Boundary Markets					--- ---1				---
+l063---Zaun		---The Slums						--- ---1				---
+
+l064---Bilgewater		---Bilgewater Bay			--- ---1				---
+l065---Bilgewater		---Bilgewater City			--- ---1				---
+l066---Bilgewater		---Low Canals				--- ---1				---
+l067---Bilgewater		---Converted Temples		--- ---1				---
+l068---Bilgewater		---Slaughter Docks			--- ---1				---
+l069---Bilgewater		---Uptown					--- ---1				---
+l070---Bilgewater		---Buhru Temple				--- ---1				---
+
+l071---Shadow Isles		---Flooded Districts		--- ---1				---
+l072---Shadow Isles		---Vault of Arcana			--- ---1				---
+l073---Shadow Isles		---The Crater				--- ---1				---
+l074---Shadow Isles		---Library Keep				--- ---1				---

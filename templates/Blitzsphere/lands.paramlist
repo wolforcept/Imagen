@@ -1,0 +1,51 @@
+l001---Pumpkin Fields			--- ---Tohad
+	---3,5,7 						---
+
+l015---Ruins of Kophrot			---	---Laspinter
+	---4m,18 						--- Add /t /t to your influence.
+
+l002---Ruins of Ebruz			---	---Tohad
+	---3,5,7 						--- Land feared by /e.
+
+l003---Liars Peaks				---	---Tohad
+	---7,7,4r						---
+
+l004---The Forgotten Gateway	---	---global99
+	---14g 							--- After traversing this land:|  draw a card.
+
+l005---Gates of Omiz			---	---global99
+	---2,2,4m,2,2,10r				--- After traversing this land:|  draw a card.
+
+l006---Limehall Undercity		---	---Laspinter
+	---4,7g 						--- 
+
+l007---Mushroom Fields			---	---Laspinter
+	---3,5m 						--- 
+
+l008---Old Woods				---	---Laspinter
+	---4r,4r 						--- 
+
+l009---Tenara, Road to Moen		---	---Laspinter
+	---3g,7m,21 					--- 
+
+l010---Lava Pits				---	---Laspinter
+	---4m,4r,4m 					--- 
+
+l011---Galeg Pass				---	---Laspinter
+	---3,3,3 						--- Set aside 3 cards from your hand.|You may not use those cards.|After traversing this land, put all|those cards back into your hand.
+
+l012---Abharov Undercity		---	---Laspinter
+	---3,6m,10m 					--- 
+
+l013---Cerise					---	---Laspinter
+	---8r 							--- 
+
+l014---Great Sunio				---	---Laspinter
+	---2,2,10g 						--- Land feared by /w.
+
+l016---Ebonwood Graveyard		---	---Laspinter
+	---3,3m,3r 						--- Land feared by /c.
+
+l017---Elita Flying Mounds		---	---Laspinter
+	---8g,4r,4r 					--- 
+

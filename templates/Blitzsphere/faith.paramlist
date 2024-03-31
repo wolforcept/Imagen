@@ -1,0 +1,35 @@
+f001---Paragon Raziel			---Faith Paragon	---Peter Mohrbacher
+	---faith,2					---Gain /f /f.
+
+f002---Resurected Abbot			---Faith Warrior	---Peter Mohrbacher
+	---faith,faith,3			---Gain /f /f /o.
+
+f003---Water Temple Monks		---Faith Warrior	---eddie mendoza
+	---faith,3					---Play a card ignoring hostilities.||You may also trash a card.
+
+f004---Heretic Hunter			---Faith Warrior	---Mika Koskensalmi
+	---faith,2					---Hostile towards Magic cards.||Gain /f.||Alternatively, discard a non /f|card and draw a card.
+
+f005---H�den, the Soul Guide	---Faith Dragon		---IrenBee
+	---faith,4					---Hostile towards Magic cards.||Gain /f /f.||Keep: trash a card.
+
+f006---Deranged Zealot			---Faith Warrior	---Peter Mohrbacher
+	---faith,2					---Hostile towards non-/f cards.||Gain /f /f /f.
+	---1
+	
+f007
+
+
+f008
+
+
+f009
+
+
+f0010
+
+s001---Faith Warrior		---Faith Warrior	---yefumm	
+	---faith,1				---Gain /1.
+
+s007---Faith Place of Power	---Faith Domain		---Istrandar
+	---faith,1				---Gain /f.

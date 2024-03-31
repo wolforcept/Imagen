@@ -1,0 +1,41 @@
+o001---Animate					---Occult Magic			---LaszloEde
+	---occult,occult,1			---Gain /o /o.
+
+o002---Soul Drought				---Occult Magic			---joelhustak
+	---occult,2					---Gain /o /o.||Alternatively, gain /o /c.
+
+o003---Forest Defenders			---Occult Warrior		---Sebastian Horoszko
+	---occult,wilds,1			---Gain /o /o.||The cost of all /w cards is|reduced by /0 until the end|of the turn.
+
+o004---Aberrant Necromancer		---Occult Magician		---Jason Nguyen
+	---3,occult					---Gain /o.|You may also discard a non /o|card to gain /o /o.
+
+o005---Fire Spirit				---Occult Being			---wacalac
+	---3,occult					---Gain /o /o ||Alternatively, gain /o /o /o, but|use it only on attack rolls.
+
+o006---Ghastly Presence			---Occult Magic			---wacalac
+	---2,occult,occult			---Draw two cards.
+
+o007---Demon Warrior			---Occult Being			---wacalac
+	---1,occult,occult			---Gain /o /o and draw a card.||Alternatively, gain /o /o /o and|discard a card from your hand.
+
+o008---Dragon Soul				---Occult Being			---ryky
+	---3,occult					---Draw a card. If it is not a /o card,|draw another card.
+
+o009---Demon Sword				---Occult Magic			---conceptarthouse
+	---2,occult,occult			---Draw 2 cards.|Alternatively, draw 4 cards and|gain a /b card.
+
+o	---Revoke					---Occult Magic			---
+	---3,occult,occult			---This card must be the first card|played on your turn.|Discard all your hand and draw five|new cards. Gain /d.
+
+o	---Seer Wayfarer			---Occult Magic			---
+	---5,occult,occult			---Look at the top seven cards of your|deck. Place two of those cards in|your hand and the rest on top of|your deck.	
+
+o	---Cleansing Space			---Occult Magic			---
+	---2,occult,occult			---Trash a wound card from your hand.|Alternatively, pay /e to trash a|wound card from your discard pile.
+
+s009---Occult Place of Power---Occult Domain	---Istrandar
+	---occult,1				---Gain /o.
+
+s003---Occult Warrior		---Occult Warrior	---yefumm
+	---occult,1				---Gain /o.

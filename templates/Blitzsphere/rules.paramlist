@@ -1,0 +1,15 @@
+Setup||Shuffle and place nearby the Lands and Battle decks.||Draw 3 cards from the Lands deck and place them in a row. Place the Blitzsphere at the end of the row. Place the Player's Token on the first Traverse Condition of the first land of the row.||Give each player a starting hand consisting of 6 different Messenger cards. Each player places an Allegiance Board in front him, and places the Allegiance Token on the center position of that board.
+
+Component description||Battle deck:|Deck of cards with an Allegiance and Name on top, an Image and Description in the middle, a Card Type at the bottom left and a Defeat Condition on the bottom right.||Lands deck:|Deck of cards with a Name on top, an Image and Description in the middle, and one or more Traversal Condition on the bottom.||Dice: for rolling on Traversals and Attacks.
+
+Objective: to traverse the lands and reach and destroy the Blitzsphere.||General Rules:|The game consists of player rounds, in which the players may play once each, in whichever order.|The order may be changed from round to round.||In each turn, the players may play any number of cards, one at a time, and then perform one attack and/or one traversal.
+
+Rules 1/3||Players move the Player's Token by completing Traversal Conditions, which are marked on the bottom of each Land Card.||When playing cards, a player will likely gain Attack Points of some types. To roll for Traversal, choose one of those types, and roll the number of dice that you have gained on that turn for that attack.||Each Land Card has specific requirements for traversal, and may require multiple rolls.
+
+Rules 2/3||To satisfy each Traversal Condition, a player must roll dice that sum up to or higher than the condition's number, and match that Traversal type.||A Wanderer icon can be fulfilled by any type.||When a Traversal Condition has been satisfied, move the Player's Token to the next Condition on that card. If it's the last one, move it to the next Land Card.
+
+Rules 3/3||Each time a Battle Card is played, the Allegiance Token must be moved in the direction of that card's Allegiance. If a card is played that would move the Allegiance token outside of its board, then that card cannot be played. 
+
+Shorthands 1/2||Gain … :|You have one more of that symbol to perform an attack.||Draw a card: Draw a card from the Battle Deck and place it in your hand.||Cooperation with … : The next effects on this card are only activated if the card played previously matches a specific rule.||Summon enemy:|Draw a card from the Battle Deck and place it on the location of the card that triggered it.
+
+Shorthands 2/2||Keep: If you choose to do this, this card does not activate. Instead, it stays played, and you can activate it at any time in a future turn, usually with bonus effects.

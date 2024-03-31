@@ -1,0 +1,18 @@
+0001---Nomad Castle						---Wanderer Construct			---Callergi
+	---wilds,time,energy,2				---Keep: gain /0 /0.
+
+0002---Mercenary Ranger					---Wanderer Warrior				---Simon Acty
+	---5								---Keep: gain /0.
+
+000---Ahruion Wandering Dragon			---Wanderer Dragon				---
+	---8								---Gain /0 for each other|card played this turn.
+
+000---Ardent Phoenix					---Wanderer Phoenix				---
+	---wilds,chaos,time,time,6			---Gain /0 /0 /0.|Place this card on top|of your deck.
+
+000---Avatar of the Eternal Flame		---Wanderer Avatar				---
+	---wilds,wilds,chaos,chaos,4		---Gain /c /c or /w /w|for each other non /c|and /w card you played|this turn.
+
+000---Paragon Dumah						---Wanderer Paragon				---
+	---faith,faith,wilds,2				---Return to your hand|all cards played this turn|before this one.
+

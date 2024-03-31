@@ -1,0 +1,14 @@
+Earth Crystal		---earth		---1					---::earth
+Earth Crystal		---earth		---1					---::earth
+
+Fire Crystal		---fire			---1					---::fire
+Fire Crystal		---fire			---1					---::fire
+
+Water Crystal		---water		---1					---::water
+Water Crystal		---water		---1					---::water
+
+Wind Crystal		---wind			---1					---::wind
+Wind Crystal		---wind			---1					---::wind
+
+Light Crystal		---light		---1					---::light
+Darkness Crystal	---darkness		---1					---::darkness

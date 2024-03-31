@@ -1,0 +1,25 @@
+Crimson Dweller			---neutral		---1,wound			--- 	---4,4
+Monstrous Toad			---neutral		---1,wound			---Resistant to /a rolls.		---8
+Rockback Hydra			---neutral		---1,wound			---If an attack against Rockback Hydra|fails, remove a counter from it. ---3,3,3,5
+Furnace Demon			---neutral		---fire,wound		---Reveal the top card of your deck. If|it is a /f card, discard it and gain an|extra /o card. ---6,8
+Mountain Predator		---neutral		---wound			---When Mountain Predator is drawn|gain a /o card.		---4,4,6
+Jungle Hydra			---neutral		---wound			---If an attack against Jungle Hydra|fails, remove a counter from it. ---3,3,3,5
+Giga Wurm				---neutral		---wound,wound		---Resistant to /e rolls.		---10,12,14
+Molten Skywurm			---neutral		---wind,wound		---Resistant to /f and /i rolls.		---5,12
+Peaceful Crystalbeast	---neutral		---3				---When Peaceful Crystalbeast dies,|gain a Magic Crystal. 		---12
+Hellhound Matriarch		---neutral		---1,wound			---		---2,10
+Sea Terror				---neutral		---wound			---Immune to /a rolls. ---10,12
+Dragonwurm				---neutral		---wound			--- ---8,12
+Dust Stalker			---neutral		---wound			--- ---4,6,8
+Poisonous Octopod		---neutral		---wound			--- ---4,6,8
+
+
+Abandoned Temple		---				---					---Draw a card.
+Desolated Spire
+Bottomless Pit			---				---					---Discard a card.
+Calm Forest
+Virgin Skylands
+Acid Pools				---				---					---Gain a /o card.
+Swamp
+The Green Trident
+Bountiful Lands

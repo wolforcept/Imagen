@@ -1,0 +1,65 @@
+
+c000---Chaos Place of Power			---Chaos Domain		---Istrandar
+	---3,ranged						---symbol_big_melee
+
+c001---Rampaging Beast				---Chaos Warrior	---Mika Koskensalmi		
+	---3,ranged						---symbol_big_melee
+
+c002---Dragon Hunter				---Chaos Warrior	---frankhong	
+	---3,ranged						---Hostile towards Dragon cards.||Gain /ar /ar.||Alternatively, gain /ar and draw|a card.
+
+c003---Alarziik of the Gate			---Chaos Dragon		---IrenBee
+	---3,ranged						---Hostile towards /f, /o, and /t.||Gain /am /am.||Alternatively, gain /am for each|other /c you have played this|turn.
+
+c004---Fire Golem					---Chaos Magic		---Ivan Laliashvili	
+	---3,ranged						---Gain /am.||Cooperation with /w:||   Gain /am.
+
+c005---Externalize					---Chaos Magic		---ryky	
+	---3,ranged						---Gain /ag /ag.||Discard this card.
+
+c006---Chaos Megalith				---Chaos Magic		---ryky	
+	---3,ranged						---Gain /ag for each other /c or|/w card that you played this|turn.||Discard this card.
+
+c007---Crimson Warrior				---Chaos Warrior	---vanessdevolt	
+	---3,ranged						---Discard a card.||Gain /am /am for each other /c|card that you played this turn.
+
+c008---Gore Demon 					---Chaos Being		---Adam Vehige	
+	---3,ranged						---Hostility towards /e and /t.||Gain /am /am.
+
+c009---War Demon					---Chaos Being 		---Adam Vehige
+	---3,ranged						---Hostility towards /f and /o.||Gain /am /am.
+
+c010---Plague Demon					---Chaos Being		---Luke Mancini
+	---3,ranged						---Hostility towards /w and /0.||Gain /am /am.
+
+c011---Acid Terror					---Chaos Being		---Luke Mancini
+	---3,ranged						---Gain /ar.||Keep: gain /ar /ar.
+
+c012---Chaos Legion Commander		---Chaos Warrior	---Alex Boca	
+	---3,ranged						---Discard a non /c card and gain|/am /am.||Alternatively, discard all non /c|cards and gain /am /am /am.
+
+c013---Conflagration				---Chaos Magic		---Jason Engle	
+	---3,ranged						---Discard a card. Gain /ag /ag /ag.||Discard this card.
+
+c014---Chaos Terrasque				---Chaos Being		---Adam Vehige
+	---3,ranged						---Gain /am for each other /c card|that you played on this turn.
+
+c015---Fury of the Demon			---Chaos Magic		---Adam Vehige
+	---3,ranged						---Hostility towards /f.||Discard a card for each other /c|card that you played on this turn.|Then draw the same amount of|cards. Then discard this card.
+
+c016---Call of the Paragon			---Chaos Magic		---jhtART
+	---3,ranged						---Draw cards until you have drawn|a /c card.||Reset your allegiance board.||Discard this card.
+
+s002---Red Eclipse					---Chaos Magic		---kamrantariq1212
+	---3,ranged						---Gain /ar for each other non-/c|card that you played this turn.||Discard this card.
+
+
+//Spikeshield Vanguard
+//Gain /c.|Alternatively, gain /c for each|other /c card that you played|this turn.
+
+//Magma Elemental
+//-Gain /c /c /c /c.|Also, gain an extra /c for|each other /e or|/c card you play this turn.
+
+//Inner Intensity - Simon Acty
+//Every card played after|this card is also a /c card.|Gain /c.
+//Look at the top 5 cards of|your deck, choose a /c|card from them and play|it. At the end of your|turn, put that card back|into your deck and shuffle it.

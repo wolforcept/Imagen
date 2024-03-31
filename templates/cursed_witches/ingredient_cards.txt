@@ -1,0 +1,32 @@
+::Raven Lily			--- Deserts near Skython Temple			---desert				---rare			---Darkness				---5		---Discard: gain 5 spell power.
+Scorpion Tail			--- In Deserts and Rocky Mounds			---desert:rocky_mounds	---uncommon		---Darkness,Juice		---2,2		---
+Living Stone			--- In Deserts							---desert				---uncommon		---Dryness,Vigor,Spice	---2,1,1	---
+Snake Skin				--- In Deserts							---desert				---common		---Dryness				---3		---
+Blood of Lizard			--- In Deserts and near Skython Temple	---desert				---common		---Surge,Darkness		---2,1		---Discard: remove *$symbol_weakness*.
+Needles of Saguaro		--- In Deserts							---desert				---common		---Juice,Surge			---2,2		---Discard: gain *$symbol_spell_power*.;Can only be used on Deserts.
+
+// FOREST
+Fang of Wolf			---In Forests in Oakleaf Woods			---forest				---rare			---Darkness				---5		---
+Morning Glory			---In Forests							---forest				---uncommon		---Darkness				---5		---
+Spider Eggs				---In Forests							---forest				---uncommon		---Darkness				---5		---
+Rabbit's Paw			---In Forests							---forest				---common		---Darkness				---5		---
+Chicken Legs			---In Forests							---forest				---common		---Darkness				---5		---
+Mint Leaves				---In Forests							---forest				---common		---Darkness				---5		---
+
+// MOUNTAINS
+::Dark Moss				---In Mountains							---mountains			---rare			---Darkness				---5		---
+Hemlock Roots			---In Mountains							---mountains			---uncommon		---Darkness				---5		---
+Black Bear's Claw		---In Mountains							---mountains			---uncommon		---Darkness				---5		---
+Wild Pumpkin Seeds		---In Mountains							---mountains			---common		---Darkness				---5		---
+Eagle Feather			---In Mountains							---mountains			---common		---Vigor,Enchantment	---2,2		---
+Milk of Goat			---In Mountains							---mountains			---common		---Juice				---3		---Discard: remove *$symbol_weakness* *$symbol_weakness*.
+
+// WETLANDS
+Cattail of the South	---In Wetlands and near Lains			---wetlands				---common		---Vigor,Dryness		---2,2		---Discard: remove 2 weakness.
+
+// FIRESOIL
+Fire Lily				---Near Mount Qat						---firelands			---rare			---Surge,Vigor			---3,2		---Discard: gain 3 spell power.
+
+
+// SPELLS
+Conjure Food			---Near Mount Qat						---spell				---				---						---			---Discard: remove 1 weakness.
