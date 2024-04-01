@@ -29,7 +29,6 @@ public class DataXls {
                 // String[] rowContent = (String[]) Arrays.stream(sheet.getRow(0)).map(cell ->
                 // cell.getContents())
                 // .toArray();
-                System.out.println(rowContent);
                 rows.add(rowContent);
             }
         } catch (Exception e) {

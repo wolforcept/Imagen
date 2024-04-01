@@ -1,14 +1,19 @@
 package wolforce.imagen4;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.swing.AbstractAction;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 public class Main {
@@ -44,7 +49,7 @@ public class Main {
     }
 
     final JFrame frame;
-    // final JPanel content, tableWrapper;
+    final JPanel contentPane, tableWrapper;
 
     final ImageReader imageReader = new ImageReader();
     final ImageWriter imageWriter = new ImageWriter();
@@ -77,13 +82,31 @@ public class Main {
             }
         });
 
-        // content = new JPanel();
-        // content.setLayout(new BorderLayout());
+        JPanel buttonsPanel = new JPanel();
+        buttonsPanel.add(new JButton(new AbstractAction("Add Row") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                table.addNewRow(true);
+            }
+        }));
+        buttonsPanel.add(new JButton(new AbstractAction("Render") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                rerender(true);
+            }
 
-        // tableWrapper = new JPanel();
-        // content.add(tableWrapper, BorderLayout.CENTER);
+        }));
+
+        tableWrapper = new JPanel();
+        tableWrapper.setLayout(new BorderLayout());
         remakeTable();
 
+        contentPane = new JPanel();
+        contentPane.setLayout(new BorderLayout());
+        contentPane.add(tableWrapper, BorderLayout.CENTER);
+        contentPane.add(buttonsPanel, BorderLayout.SOUTH);
+
+        frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // frame.setContentPane(content);
         frame.pack();
@@ -112,13 +135,17 @@ public class Main {
     private void remakeTable() {
         table = new ParamTable(this, paramNames, paramTypes, DataXls.load(csvPath));
 
-        frame.getContentPane().removeAll();
-        frame.getContentPane().add(table);
-        frame.getContentPane().validate();
+        tableWrapper.removeAll();
+        tableWrapper.add(table.get(), BorderLayout.CENTER);
+        tableWrapper.setPreferredSize(table.get().getPreferredSize());
+        tableWrapper.validate();
+    }
 
-        // tableWrapper.removeAll();
-        // tableWrapper.add(table);
-        // tableWrapper.validate();
+    void rerender(boolean isNewRender) {
+        List<String[]> rows = table.getSelectedRows(isNewRender);
+        if (rows.size() == 0)
+            return;
+        render(rows, true);
     }
 
     void render(List<String[]> rows, boolean isNewRender) {
@@ -194,7 +221,7 @@ public class Main {
             String script = DataScript.load(scriptPath);
             System.out.println(script);
 
-            table.renderSelected(false);
+            rerender(false);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println(e.getMessage());
@@ -203,6 +230,7 @@ public class Main {
 
     public void save(List<String[]> data) {
         DataXls.save(csvPath, data);
+        this.render(data, false);
     }
 
 }
