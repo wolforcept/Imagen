@@ -32,18 +32,22 @@ public class Docs {
         // FileReader("src/main/java/wolforce/imagen4/RenderedWrapper.java"))){
         // reader.transferTo
         // }
-        try {
-            String path = "imagen4/src/main/java/wolforce/imagen4/RendererWrapper.java";
-            path = Paths.get(new File("").getAbsolutePath(), path).toFile().getAbsolutePath();
-            System.out.println(path);
-            String text = new String(Files.readAllBytes(Paths.get(path)), StandardCharsets.UTF_8);
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter("docs.txt"));) {
-                writer.write(text);
-                writer.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+        // try {
+        // String path = "imagen4/src/main/java/wolforce/imagen4/RendererWrapper.java";
+        // path = Paths.get(new File("").getAbsolutePath(),
+        // path).toFile().getAbsolutePath();
+        // System.out.println(path);
+        // String text = new String(Files.readAllBytes(Paths.get(path)),
+        // StandardCharsets.UTF_8);
+        // try (BufferedWriter writer = new BufferedWriter(new FileWriter("docs.txt"));)
+        // {
+        // writer.write(text);
+        // writer.close();
+        // }
+        // } catch (Exception e) {
+        // e.printStackTrace();
+        // }
 
     }
 

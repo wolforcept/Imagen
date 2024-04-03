@@ -38,7 +38,7 @@ public class ImageReader extends HashMap<String, BufferedImage> {
 
     public void readImage(String path) {
         File file = Path.of(inputPath, path).toFile();
-        System.out.print("reading image " + file.getAbsolutePath());
+        System.out.print("[Image Reader] reading image " + file.getAbsolutePath());
         try {
             BufferedImage img = ImageIO.read(file);
             put(path, img);

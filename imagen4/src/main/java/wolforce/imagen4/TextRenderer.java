@@ -55,8 +55,6 @@ public class TextRenderer {
 
                 var bounds = token.getBounds();
 
-                System.out.println(token + ">" + bounds.getWidth());
-
                 if (lineWidth + bounds.getWidth() > w || token instanceof LineBreakToken) {
                     lines.add(Pair.of((int) (lineWidth), currentLine));
                     lineWidth = 0;
@@ -80,7 +78,7 @@ public class TextRenderer {
                 lineX = x + w - lineW;
             }
 
-            {
+            if (isDebug) {
                 Color prevColor = graphics.getColor();
 
                 int lineH = fontMetrics.getHeight();
@@ -130,7 +128,6 @@ public class TextRenderer {
             }
 
             if (c == '|') {
-                System.out.println("AAAAAAAAAAA");
                 Token token = tryParseToken(tokenString, false);
                 list.add(token);
                 tokenString = "";
@@ -164,7 +161,6 @@ public class TextRenderer {
 
     private Token tryParseToken(String tokenString, boolean force) {
 
-        System.out.println("trying to parse <" + tokenString + ">");
         if (tokenString.matches(regexImages))
             return new ImageToken(tokenString);
 

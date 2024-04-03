@@ -75,8 +75,6 @@ public class ParamTable {
                     colSizes[colIndex] = (int) (width * 1.5);
             }
         }
-        for (int i = 0; i < colSizes.length; i++)
-            System.out.println(colSizes[i]);
 
         for (int i = 0; i < types.length; i++) {
 

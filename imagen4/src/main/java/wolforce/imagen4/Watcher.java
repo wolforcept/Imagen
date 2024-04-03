@@ -28,7 +28,7 @@ public class Watcher {
         monitor.addObserver(observer);
         try {
             monitor.start();
-            System.out.println("started watching " + scriptPath);
+            System.out.println("[Watcher] started watching " + scriptPath);
         } catch (Exception e) {
             e.printStackTrace();
         }

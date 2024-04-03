@@ -239,7 +239,7 @@ public class Main {
             }
             increasingCols = !increasingCols;
         }
-        System.out.println("|  > Size: " + nCols + " x " + nLines);
+        System.out.println("[Main] Writing composite image: " + nCols + " x " + nLines);
         BufferedImage compImg = new BufferedImage(width * nCols, height * nLines, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = compImg.createGraphics();
         int x = 0;
@@ -260,7 +260,7 @@ public class Main {
 
     public void scriptChanged() {
         try {
-            System.out.println("script changed");
+            System.out.println("[Main] Script updated");
             boolean hasNewTypes = reloadDataTypes();
             if (hasNewTypes)
                 remakeAll();

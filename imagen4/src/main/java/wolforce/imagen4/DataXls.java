@@ -41,7 +41,7 @@ public class DataXls {
         if (records.size() == 0)
             return;
 
-        System.out.println("-- SAVING --");
+        System.out.println("[Data Xls] saving file");
 
         try {
             WritableWorkbook workbook = Workbook.createWorkbook(new File(path));
