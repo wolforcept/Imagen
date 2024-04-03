@@ -2,17 +2,11 @@ package wolforce.imagen4;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.codehaus.groovy.control.CompilerConfiguration;
 
@@ -34,8 +28,6 @@ public class RendereredImage extends BufferedImage {
         // System.out.println(s);
         // }
     }
-
-    private static final String imageRegex = "\\{[\\w-:\\.]+\\}";
 
     private final ImageReader imageReader;
     private final ImageWriter imageWriter;

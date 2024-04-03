@@ -9,18 +9,12 @@ import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.sound.sampled.Line;
-
 import org.apache.commons.lang3.tuple.Pair;
 
 import wolforce.imagen4.RendereredImage.Align;
 
 public class TextRenderer {
 
-    // private static final String regexImages =
-    // "(?<!\\\\)\\{[^\\{\\}]*(?<!\\\\)\\}";
-    // private static final String regexRichText =
-    // "(?<!\\\\)\\[[^\\[\\]]*(?<!\\\\)\\]";
     private static final String regexImages = "\\{[^\\{\\}]+\\}";
     private static final String regexRichText = "\\[[^\\[\\]]+\\]";
 
