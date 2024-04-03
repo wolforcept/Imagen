@@ -1,13 +1,6 @@
-outputs/
-inputs/
-data.bak
-data.csv
-data.xls
-data.xlsx
-docs.txt
-imagen.jar
-pickaxe.json
-runImagen.bat
-script.groovy
-config.properties
-imagen4/src/main/java/wolforce/imagen4/TextRenderer old
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!imagen4
