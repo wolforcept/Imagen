@@ -8,6 +8,8 @@ import java.awt.Point;
 import java.awt.RenderingHints;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 
@@ -26,6 +28,13 @@ public class Displayer {
 		tabs = new JTabbedPane();
 		frame.add(tabs);
 		frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				tabs.removeAll();
+				panels.clear();
+			}
+		});
 	}
 
 	public void render(BufferedImage img, String name) {
@@ -37,6 +46,8 @@ public class Displayer {
 			panels.get(name).img = img;
 			panels.get(name).repaint();
 		}
+		if (panels.get(name) != null)
+			tabs.setSelectedComponent(panels.get(name));
 	}
 
 	public void show() {

@@ -1,0 +1,230 @@
+package wolforce.imagen4;
+
+import java.awt.Color;
+import java.awt.FontMetrics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import wolforce.imagen4.RendereredImage.Align;
+
+public class TextRenderer2 {
+
+    private static final String imageRegex = "\\{[\\w-:\\.]+\\}";
+
+    public static int textImagesDefaultX = 0;
+    public static int textImagesDefaultY = 0;
+    public static float textImagesDefaultScale = 1;
+
+    private final RendereredImage rendereredImage;
+    private final Graphics2D graphics;
+    private final boolean isDebug;
+    private final Align fontAlignement;
+
+    private final List<ImageToRender> images;
+
+    private final String originalText;
+    private final String replacedText;
+
+    public TextRenderer2(
+            RendereredImage rendereredImage,
+            Graphics2D graphics,
+            boolean isDebug,
+            Align fontAlignement,
+            String text,
+            int x,
+            int y,
+            int w) {
+
+        this.rendereredImage = rendereredImage;
+        this.graphics = graphics;
+        this.isDebug = isDebug;
+        this.fontAlignement = fontAlignement;
+        this.originalText = text;
+        this.images = new ArrayList<>();
+        this.replacedText = parseAndReplaceImagesInOriginalText();
+
+        FontMetrics m = graphics.getFontMetrics();
+
+        int stringWidth = getStringWidth(text);
+        if (stringWidth < w) {
+            drawStringAligned(text, x, y, w);
+
+        } else {
+            String[] words = text.split(" ");
+            String currentLine = words[0];
+            for (int i = 1; i < words.length; i++) {
+                if (getStringWidth(currentLine + words[i]) < w) {
+                    currentLine += " " + words[i];
+                } else {
+                    drawStringAligned(currentLine, x, y, w);
+                    y += m.getHeight();
+                    currentLine = words[i];
+                }
+            }
+            if (currentLine.trim().length() > 0) {
+                drawStringAligned(currentLine, x, y, w);
+                // graphics.drawString(currentLine, x, y);
+            }
+        }
+    }
+
+    abstract class TextPiece {
+    }
+
+    class StringToRender extends TextPiece {
+        String string;
+    }
+
+    class ImageToRender extends TextPiece {
+        BufferedImage image;
+        Align align = Align.LEFT;
+
+        ImageToRender(String _raw) {
+
+            String raw = _raw.replaceAll("\\{\\}", "");
+
+            if (!raw.contains(":") && !raw.contains(",")) {
+                image = getImage(raw);
+            } else {
+
+            }
+
+        }
+    }
+
+    private String parseAndReplaceImagesInOriginalText() {
+
+        List<ImageToRender> rawImages = getAllMatches(originalText, imageRegex).stream().map(x -> new ImageToRender(x))
+                .toList();
+        List<String> textParts = new ArrayList<String>(
+                Arrays.asList(originalText.replaceAll(imageRegex, "¿½").split("¿½")));
+
+        // for (String imageName : images.keySet()) {
+
+        // String[] imgParts = imageNames.get(i).substring(1, imageNames.get(i).length()
+        // - 1).split("\\:");
+        // String imgId = imgParts[0];
+        // float imgScale = imgParts.length > 3 ? Float.parseFloat(imgParts[3]) :
+        // textImagesDefaultScale;
+        // BufferedImage img = getImage(imgId);
+        // int imgW = (int) (img.getWidth() * imgScale);
+
+        // String space = "";
+        // while (getStringWidth(space) < imgW)
+        // space += " ";
+
+        // }
+
+        return String.join("", textParts);
+    }
+
+    private BufferedImage getImage(String name) {
+        return rendereredImage.getImage(name);
+    }
+
+    private void drawStringAligned(String text, int x, int y, int w) {
+
+        int finalx = x;
+        int finaly = y;
+        int width = getStringWidth(text);
+        if (fontAlignement == Align.CENTER && w != Integer.MAX_VALUE)
+            finalx = (int) (x + w / 2 - width / 2);
+        else if (fontAlignement == Align.RIGHT)
+            finalx = x - width;
+
+        drawStringWithImgs(text, finalx, finaly);
+
+        if (isDebug) {
+            StringBounds bounds = getStringBounds(text);
+            Color prevColor = graphics.getColor();
+            graphics.setColor(Color.black);
+            graphics.drawRect(finalx, finaly + bounds.d - bounds.h, w, bounds.h);
+            graphics.setColor(prevColor);
+        }
+    }
+
+    private void drawStringWithImgs(String fullText, int x, int y) {
+
+        List<String> images = getAllMatches(fullText, imageRegex);
+        String text = fullText.replaceAll(imageRegex, "¿½");
+
+        ArrayList<String> parts = new ArrayList<String>(java.util.Arrays.asList(text.split("¿½")));
+        int dx = 0;
+        for (int i = 0; i < parts.size(); i++) {
+
+            dx += getStringWidth(parts.get(i));
+
+            if (images.size() > i) {
+                String[] imgParts = images.get(i).substring(1, images.get(i).length() - 1).split("\\:");
+                String imgId = imgParts[0];
+                int imgDx = imgParts.length > 1 ? Integer.parseInt(imgParts[1]) : textImagesDefaultX;
+                int imgDy = imgParts.length > 2 ? Integer.parseInt(imgParts[2]) : textImagesDefaultY;
+                float imgScale = imgParts.length > 3 ? Float.parseFloat(imgParts[3]) : textImagesDefaultScale;
+                BufferedImage img = getImage(imgId);
+                int imgW = (int) (img.getWidth() * imgScale);
+                int imgH = (int) (img.getHeight() * imgScale);
+                rendereredImage.drawImage(img, x + dx + imgDx, y + imgDy - imgH, imgW, imgH);
+
+                String space = "";
+                while (getStringWidth(space) < imgW)
+                    space += " ";
+                parts.add(i + 1, space);
+                i++;
+            }
+
+            System.out.println(i + " - " + parts.get(i));
+
+        }
+
+        // graphics.drawString(getStringWithoutImages(fullText), x, y);
+        graphics.drawString(String.join("", parts), x, y);
+
+        if (isDebug) {
+            Color prevColor = graphics.getColor();
+            StringBounds bounds = getStringBounds(text);
+            graphics.setColor(Color.white);
+            graphics.drawRect(x, y + bounds.d - bounds.h, dx, bounds.h);
+            graphics.setColor(prevColor);
+        }
+    }
+
+    // UTILS
+
+    private int getStringWidth(String string) {
+        String text = getStringWithoutImages(string);
+        Rectangle2D bounds = graphics.getFont().getStringBounds(text, graphics.getFontRenderContext());
+        return (int) bounds.getWidth();
+    }
+
+    private StringBounds getStringBounds(String string) {
+        FontMetrics metrics = graphics.getFontMetrics();
+        String text = getStringWithoutImages(string);
+        Rectangle2D bounds = graphics.getFont().getStringBounds(text, graphics.getFontRenderContext());
+        return new StringBounds((int) bounds.getWidth(), (int) bounds.getHeight(), metrics.getDescent());
+    }
+
+    private static record StringBounds(int w, int h, int d) {
+    }
+
+    private String getStringWithoutImages(String string) {
+        return string.replaceAll(imageRegex, "");
+    }
+
+    // UTILS
+
+    public static List<String> getAllMatches(String text, String regex) {
+        List<String> matches = new ArrayList<String>();
+        Matcher m = Pattern.compile("(?=(" + regex + "))").matcher(text);
+        while (m.find()) {
+            matches.add(m.group(1));
+        }
+        return matches;
+    }
+
+}

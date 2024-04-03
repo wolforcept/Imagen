@@ -7,19 +7,51 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.lang.Boolean;
 
-public record DataConfig(int width, int height) {
+public class DataConfig {
 
-    private static final DataConfig INITIAL = new DataConfig(1000, 1000);
+    public final int width;
+    public final int height;
+    public final boolean isDebug;
+
+    public DataConfig() {
+        this.width = 1000;
+        this.height = 1000;
+        this.isDebug = false;
+    }
+
+    public DataConfig(Properties p) {
+
+        this.width = tryGetProperty(p, "width", x -> Integer.parseInt(x), 1000);
+        this.height = tryGetProperty(p, "height", x -> Integer.parseInt(x), 1000);
+        this.isDebug = tryGetProperty(p, "isDebug", x -> x.equals("true"), false);
+
+    }
+
+    interface Parser<T> {
+        T parse(String s);
+    }
+
+    private <T> T tryGetProperty(Properties p, String name, Parser<T> parser, T defaultValue) {
+        try {
+            return parser.parse(p.getProperty(name));
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
+
+    //
+    // STATICS
+    //
+
+    private static final DataConfig INITIAL = new DataConfig();
 
     public static DataConfig load(String path) {
         Properties p = new Properties();
         try (InputStream is = new FileInputStream(new File(path))) {
             p.load(is);
-            return new DataConfig(
-                    Integer.parseInt(p.getProperty("width")),
-                    Integer.parseInt(p.getProperty("height"))//
-            );
+            return new DataConfig(p);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -7,11 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.AbstractAction;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
@@ -45,11 +47,12 @@ public class Main {
             e.printStackTrace();
         }
 
+        Docs.generate();
         new Main();
     }
 
     final JFrame frame;
-    final JPanel contentPane, tableWrapper;
+    final JPanel contentPane, tableWrapper, sortByWrapper;
 
     final ImageReader imageReader = new ImageReader();
     final ImageWriter imageWriter = new ImageWriter();
@@ -60,6 +63,7 @@ public class Main {
     private String[] paramNames;
     private String[] paramTypes;
     private ParamTable table;
+    private JComboBox<String> sortBy;
 
     private Main() {
 
@@ -96,6 +100,12 @@ public class Main {
             }
 
         }));
+        sortByWrapper = new JPanel();
+        sortByWrapper.setLayout(new BorderLayout());
+        // sortByWrapper.setBorder(new TitledBorder("sort by:"));
+        remakeSortBy();
+        sortBy.setSelectedItem("");
+        buttonsPanel.add(sortByWrapper);
 
         tableWrapper = new JPanel();
         tableWrapper.setLayout(new BorderLayout());
@@ -108,7 +118,6 @@ public class Main {
 
         frame.setContentPane(contentPane);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // frame.setContentPane(content);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
@@ -132,6 +141,33 @@ public class Main {
         return true;
     }
 
+    private void remakeAll() {
+        remakeSortBy();
+        remakeTable();
+    }
+
+    private void remakeSortBy() {
+
+        String prevSelectedValue = null;
+        int prevSelectedIndex = -1;
+        if (sortBy != null) {
+            prevSelectedValue = (String) sortBy.getSelectedItem();
+            prevSelectedIndex = sortBy.getSelectedIndex();
+        }
+
+        sortBy = new JComboBox<>(paramNames);
+        sortBy.addItem("");
+
+        sortByWrapper.removeAll();
+        sortByWrapper.add(sortBy, BorderLayout.CENTER);
+        sortByWrapper.validate();
+
+        if (prevSelectedIndex >= 0)
+            sortBy.setSelectedIndex(prevSelectedIndex);
+        if (prevSelectedValue != null)
+            sortBy.setSelectedItem(prevSelectedValue);
+    }
+
     private void remakeTable() {
         table = new ParamTable(this, paramNames, paramTypes, DataXls.load(csvPath));
 
@@ -145,7 +181,7 @@ public class Main {
         List<String[]> rows = table.getSelectedRows(isNewRender);
         if (rows.size() == 0)
             return;
-        render(rows, true);
+        render(rows, isNewRender);
     }
 
     void render(List<String[]> rows, boolean isNewRender) {
@@ -159,21 +195,31 @@ public class Main {
         String scriptString = DataScript.load(scriptPath);
         DataConfig dataConfig = DataConfig.load(configPath);
 
-        LinkedList<BufferedImage> images = new LinkedList<>();
-        int i = 0;
-        for (String[] params : rows) {
-            RendereredImage img = new RendereredImage(i, paramNames, params, scriptString, dataConfig, imageReader,
-                    imageWriter);
-            i++;
+        int sortParam = sortBy.getSelectedIndex();
 
-            imageWriter.outputImage("image_" + i, img);
-            images.add(img);
+        HashMap<String, LinkedList<BufferedImage>> images = new HashMap<>();
+        {
+            int imageIndex = 0;
+            for (String[] params : rows) {
+                RendereredImage img = new RendereredImage(imageIndex, paramNames, params, scriptString, dataConfig,
+                        imageReader,
+                        imageWriter);
+                imageIndex++;
+
+                imageWriter.outputImage("image_" + imageIndex, img);
+                String sortParamValue = sortParam == params.length ? "" : params[sortParam];
+                if (!images.containsKey(sortParamValue))
+                    images.put(sortParamValue, new LinkedList<>());
+                images.get(sortParamValue).add(img);
+            }
         }
-        String name = "images";
-        BufferedImage finalImage = generateCompoundImage(name, images);
 
-        displayer.render(finalImage, name);
-        if (isNewRender)
+        for (String tab : images.keySet()) {
+            String name = tab.equals("") ? " - default - " : tab;
+            BufferedImage finalImage = generateCompoundImage(name, images.get(tab));
+            displayer.render(finalImage, name);
+        }
+        if (isNewRender && !displayer.isVisible())
             displayer.show();
     }
 
@@ -217,7 +263,7 @@ public class Main {
             System.out.println("script changed");
             boolean hasNewTypes = reloadDataTypes();
             if (hasNewTypes)
-                remakeTable();
+                remakeAll();
             String script = DataScript.load(scriptPath);
             System.out.println(script);
 
@@ -230,7 +276,7 @@ public class Main {
 
     public void save(List<String[]> data) {
         DataXls.save(csvPath, data);
-        this.render(data, false);
+        this.rerender(false);
     }
 
 }

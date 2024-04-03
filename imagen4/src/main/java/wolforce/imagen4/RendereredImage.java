@@ -39,13 +39,11 @@ public class RendereredImage extends BufferedImage {
 
     private final ImageReader imageReader;
     private final ImageWriter imageWriter;
+    private final DataConfig config;
 
     private HashMap<String, String> imgAbrevs;
     private Graphics2D graphics;
-    private Align fontAlignementRight = Align.LEFT;
-    private int textImagesDefaultX = 0;
-    private int textImagesDefaultY = 0;
-    private float textImagesDefaultScale = 1;
+    private Align fontAlignement = Align.LEFT;
 
     public RendereredImage(int i,
             String[] paramNames,
@@ -55,8 +53,8 @@ public class RendereredImage extends BufferedImage {
             ImageReader imageReader,
             ImageWriter imageWriter) {
 
-        super(dataConfig.width(), dataConfig.height(), BufferedImage.TYPE_INT_ARGB);
-
+        super(dataConfig.width, dataConfig.height, BufferedImage.TYPE_INT_ARGB);
+        this.config = dataConfig;
         RendererWrapper.renderer = this;
 
         this.imageReader = imageReader;
@@ -81,7 +79,7 @@ public class RendereredImage extends BufferedImage {
 
     // GET
 
-    private BufferedImage getImage(String name) {
+    public BufferedImage getImage(String name) {
         return imageReader.get(imgAbrevs.containsKey(name) ? imgAbrevs.get(name) : name);
     }
 
@@ -92,9 +90,9 @@ public class RendereredImage extends BufferedImage {
     // SET
 
     public void setTextImagesDefaults(int x, int y, float s) {
-        textImagesDefaultX = x;
-        textImagesDefaultY = y;
-        textImagesDefaultScale = s;
+        TextRenderer.textImagesDefaultX = x;
+        TextRenderer.textImagesDefaultY = y;
+        TextRenderer.textImagesDefaultScale = s;
     }
 
     public void addImageAbrev(String abrev, String path) {
@@ -108,14 +106,14 @@ public class RendereredImage extends BufferedImage {
     public void setFont(String fontName, int size, String attrs) {
         String[] attrParts = attrs.split(",");
         int style = Font.PLAIN;
-        fontAlignementRight = Align.LEFT;
+        fontAlignement = Align.LEFT;
         for (String attr : attrParts) {
             switch (attr.toLowerCase()) {
                 case "right":
-                    fontAlignementRight = Align.RIGHT;
+                    fontAlignement = Align.RIGHT;
                     break;
                 case "center":
-                    fontAlignementRight = Align.CENTER;
+                    fontAlignement = Align.CENTER;
                     break;
                 case "bold":
                     style |= Font.BOLD;
@@ -152,113 +150,8 @@ public class RendereredImage extends BufferedImage {
         graphics.drawImage(getImage(imageId), x, y, w, h, null);
     }
 
-    // DRAW STRING
-
-    // public void drawString(String string, int x, int y) {
-    // Rectangle2D bounds = graphics.getFont().getStringBounds(string,
-    // graphics.getFontRenderContext());
-    // int dx = fontAlignementRight ? -(int) bounds.getWidth() : 0;
-    // graphics.drawString(string, x + dx, y);
-    // }
-
-    public void drawStringLines(String text, int x, int y, int w) {
-
-        FontMetrics m = graphics.getFontMetrics();
-
-        int stringWidth = getStringWidth(text);
-        if (stringWidth < w) {
-            drawStringAligned(text, x, y, w);
-
-        } else {
-            String[] words = text.split(" ");
-            String currentLine = words[0];
-            for (int i = 1; i < words.length; i++) {
-                if (getStringWidth(currentLine + words[i]) < w) {
-                    currentLine += " " + words[i];
-                } else {
-                    drawStringAligned(currentLine, x, y, w);
-                    y += m.getHeight();
-                    currentLine = words[i];
-                }
-            }
-            if (currentLine.trim().length() > 0) {
-                drawStringAligned(currentLine, x, y, w);
-                // graphics.drawString(currentLine, x, y);
-            }
-        }
-
-        // int caret = 0;
-        // int currW = 0;
-        // do{
-
-        // }while();
-
-        // int width = getStringWidth(string);
-        // if(fontAlignementRight)
-        // drawStringWithImgs(string, (int) (x + w / 2 - width / 2), y);
-
-    }
-
-    private void drawStringAligned(String text, int x, int y, int w) {
-
-        if (fontAlignementRight == Align.CENTER && w != Integer.MAX_VALUE) {
-            int width = getStringWidth(text);
-            drawStringWithImgs(text, (int) (x + w / 2 - width / 2), y);
-        } else if (fontAlignementRight == Align.RIGHT) {
-            int width = getStringWidth(text);
-            drawStringWithImgs(text, x - width, y);
-        } else {
-            drawStringWithImgs(text, x, y);
-        }
-    }
-
-    private void drawStringWithImgs(String fullText, int x, int y) {
-
-        graphics.drawString(getStringWithoutImages(fullText), x, y);
-
-        List<String> images = getAllMatches(fullText, imageRegex);
-        String text = fullText.replaceAll(imageRegex, "¿½");
-
-        String[] parts = text.split("¿½");
-        int dx = 0;
-        for (int i = 0; i < parts.length; i++) {
-
-            dx += getStringWidth(parts[i]);
-
-            if (images.size() > i) {
-                String[] imgParts = images.get(i).substring(1, images.get(i).length() - 1).split("\\:");
-                String imgId = imgParts[0];
-                int imgDx = imgParts.length > 1 ? Integer.parseInt(imgParts[1]) : textImagesDefaultX;
-                int imgDy = imgParts.length > 2 ? Integer.parseInt(imgParts[2]) : textImagesDefaultY;
-                float imgScale = imgParts.length > 3 ? Float.parseFloat(imgParts[3]) : textImagesDefaultScale;
-                BufferedImage img = getImage(imgId);
-                int imgW = (int) (img.getWidth() * imgScale);
-                int imgH = (int) (img.getHeight() * imgScale);
-                drawImage(img, x + dx + imgDx, y + imgDy - imgH, imgW, imgH);
-            }
-        }
-
-    }
-
-    // UTILS
-
-    private int getStringWidth(String string) {
-        String text = getStringWithoutImages(string);
-        Rectangle2D bounds = graphics.getFont().getStringBounds(text, graphics.getFontRenderContext());
-        return (int) bounds.getWidth();
-    }
-
-    private String getStringWithoutImages(String string) {
-        return string.replaceAll(imageRegex, "");
-    }
-
-    public static List<String> getAllMatches(String text, String regex) {
-        List<String> matches = new ArrayList<String>();
-        Matcher m = Pattern.compile("(?=(" + regex + "))").matcher(text);
-        while (m.find()) {
-            matches.add(m.group(1));
-        }
-        return matches;
+    public void drawString(String s, int x, int y, int w) {
+        new TextRenderer(this, graphics, config.isDebug, fontAlignement).renderText(s, x, y, w);
     }
 
 }

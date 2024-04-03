@@ -8,6 +8,14 @@ public class RendererWrapper extends Script {
 
     public static RendereredImage renderer;
 
+    public int width() {
+        return renderer.getWidth();
+    }
+
+    public int height() {
+        return renderer.getHeight();
+    }
+
     @Override
     public Object run() {
         throw new UnsupportedOperationException("Unimplemented method 'run'");
@@ -52,11 +60,11 @@ public class RendererWrapper extends Script {
     }
 
     public void text(String string, int x, int y) {
-        renderer.drawStringLines(string, x, y, Integer.MAX_VALUE);
+        renderer.drawString(string, x, y, Integer.MAX_VALUE);
     }
 
     public void text(String string, int x, int y, int w) {
-        renderer.drawStringLines(string, x, y, w);
+        renderer.drawString(string, x, y, w);
     }
 
     public void textImagesDefaults(int x, int y, float scale) {
