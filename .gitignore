@@ -1,0 +1,11 @@
+outputs/
+inputs/
+data.bak
+data.csv
+data.xls
+data.xlsx
+docs.txt
+imagen.jar
+pickaxe.json
+runImagen.bat
+script.groovy
