@@ -78,6 +78,10 @@ public class TextRenderer {
                 lineX = x + w - lineW;
             }
 
+            if (fontAlignement == Align.CENTER) {
+                lineX = x + w / 2 - lineW / 2;
+            }
+
             if (isDebug) {
                 Color prevColor = graphics.getColor();
 
