@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.AdjustmentEvent;
 import java.awt.event.AdjustmentListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.DefaultCellEditor;
@@ -26,11 +27,17 @@ public class ParamTable {
     private DefaultTableModel dtm;
     public boolean isAutoScroll;
     public String[] types;
-    private int[] lastRenderedRows = new int[] {};
+    private int[] lastRenderedRows = new int[]{};
 
     public ParamTable(Main main, String[] header, String[] types, List<String[]> rows) {
         this.main = main;
         this.types = types;
+        if (rows.size() == 0) {
+            rows.add(new String[header.length]);
+            rows.add(new String[header.length]);
+            Arrays.fill(rows.get(0), "");
+            Arrays.fill(rows.get(1), "");
+        }
 
         dtm = new DefaultTableModel(null, header) {
 
@@ -63,8 +70,7 @@ public class ParamTable {
             addNewRow(false, row);
 
         int[] colSizes = new int[types.length];
-        for (int i = 0; i < colSizes.length; i++)
-            colSizes[i] = 0;
+        Arrays.fill(colSizes, 0);
 
         for (int rowIndex = 0; rowIndex < colSizes.length; rowIndex++) {
             for (int colIndex = 0; colIndex < colSizes.length; colIndex++) {
