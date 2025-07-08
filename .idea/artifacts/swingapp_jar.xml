@@ -1,0 +1,45 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="swingapp:jar">
+    <output-path>$PROJECT_DIR$/../artifacts/swingapp_jar</output-path>
+    <root id="archive" name="swingapp.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../artifacts/manifest/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="swingapp" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/annotations/13.0/annotations-13.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.17.0/commons-lang3-3.17.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.18.0/commons-codec-1.18.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-stdlib/2.2.0-RC/kotlin-stdlib-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-scripting-jsr223/2.2.0-RC/kotlin-scripting-jsr223-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-scripting-common/2.2.0-RC/kotlin-scripting-common-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlinx/kotlinx-coroutines-core-jvm/1.8.0/kotlinx-coroutines-core-jvm-1.8.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-scripting-jvm/2.2.0-RC/kotlin-scripting-jvm-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-scripting-compiler-embeddable/2.2.0-RC/kotlin-scripting-compiler-embeddable-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-compiler-embeddable/2.2.0-RC/kotlin-compiler-embeddable-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-scripting-jvm-host/2.2.0-RC/kotlin-scripting-jvm-host-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-reflect/1.6.10/kotlin-reflect-1.6.10.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-io/commons-io/2.18.0/commons-io-2.18.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-csv/1.14.0/commons-csv-1.14.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-scripting-compiler-impl-embeddable/2.2.0-RC/kotlin-scripting-compiler-impl-embeddable-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-script-runtime/2.2.0-RC/kotlin-script-runtime-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/jetbrains/kotlin/kotlin-daemon-embeddable/2.2.0-RC/kotlin-daemon-embeddable-2.2.0-RC.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.18.0" />
+      <element id="library" level="project" name="Maven: commons-io:commons-io:2.18.0" />
+      <element id="library" level="project" name="Maven: org.apache.commons:commons-csv:1.14.0" />
+      <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.17.0" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-compiler-embeddable:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-daemon-embeddable:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-reflect:1.6.10" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-script-runtime:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-scripting-common:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-scripting-compiler-impl-embeddable:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-scripting-jsr223:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-scripting-jvm-host:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-scripting-jvm:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlin:kotlin-stdlib:2.2.0-RC" />
+      <element id="library" level="project" name="Maven: org.jetbrains.kotlinx:kotlinx-coroutines-core-jvm:1.8.0" />
+      <element id="library" level="project" name="Maven: org.jetbrains:annotations:13.0" />
+    </root>
+  </artifact>
+</component>
